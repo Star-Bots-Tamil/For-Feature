@@ -385,8 +385,7 @@ Delete A Lot Of Messages From Groups!
 ʏᴏᴜ ᴀʀᴇ ᴜꜱɪɴɢ ᴏɴᴇ ᴏꜰ ᴍʏ ᴏʟᴅ ᴍᴇꜱꜱᴀɢᴇꜱ, 
 ᴘʟᴇᴀꜱᴇ ꜱᴇɴᴅ ᴛʜᴇ ʀᴇQᴜᴇꜱᴛ ᴀɢᴀɪɴ.""" 
     
-    NORSLTS = """<b>
-★ #No_Result ★
+    NORSLTS = """<b>★ #No_Result ★
 
 🆔 ID :- {}
 
