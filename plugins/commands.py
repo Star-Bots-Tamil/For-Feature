@@ -1072,6 +1072,7 @@ async def save_welcome(client, message):
         return await message.reply_text("Command Incomplete!")
     
     await save_group_settings(grp_id, 'welcome_text', welcome)
+    await save_group_settings(grpid, 'welcome', True)	
     await message.reply_text(f"Successfully changed welcome for {title} to\n\n{welcome}")
 
 @Client.on_message(filters.command('get_welcome'))
