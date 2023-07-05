@@ -123,8 +123,8 @@ class Database:
             'auto_ffilter': AUTO_FFILTER,
             'template': IMDB_TEMPLATE,
             'caption': CUSTOM_FILE_CAPTION,
-            'url': SHORTLINK_URL,
-            'api': SHORTLINK_API,
+            'shortlink': SHORTLINK_URL,
+            'shortlink_api': SHORTLINK_API,
             'is_shortlink': IS_SHORTLINK
         }
         chat = await self.grp.find_one({'id':int(id)})
