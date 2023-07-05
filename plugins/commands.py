@@ -809,7 +809,7 @@ async def get_template(client, message):
 
     settings = await get_settings(grp_id)
     template = settings["template"]
-    await message.reply_text(f"<b>IMDB Template for {title}\n\nYour Current IMDB Template\n\n{template}</b>")
+    await message.reply_text(f"<b>IMDB Template for {title}\n\nYour Current IMDB Template\n\n</b>{template}")
 
 @Client.on_message(filters.command('set_shortlink'))
 async def set_shortlink(bot, message):
@@ -1074,8 +1074,8 @@ async def save_welcome(client, message):
     await save_group_settings(grp_id, 'welcome_text', welcome)
     await message.reply_text(f"Successfully changed welcome for {title} to\n\n{welcome}")
 
-@Client.on_message(filters.command('get_shortlink'))
-async def get_shortlink(client, message):
+@Client.on_message(filters.command('get_welcome'))
+async def get_welcome(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
@@ -1112,7 +1112,7 @@ async def get_shortlink(client, message):
 
     settings = await get_settings(grp_id)
     welcome = settings["welcome_text"]
-    await message.reply_text(f"<b>Welcome Message for {title}\n\nYour Group's Welcome Message\n\n{welcome}</b>")
+    await message.reply_text(f"<b>Welcome Message for {title}\n\nYour Group's Welcome Message\n\n</b>{welcome}")
 
 @Client.on_message(filters.command("paste"))
 async def paste_func(_, message: Message):
