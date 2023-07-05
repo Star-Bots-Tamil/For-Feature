@@ -66,7 +66,6 @@ async def save_group(bot, message):
                                                                          ]]
                                                  ),
                                                  parse_mode=enums.ParseMode.HTML,
-                                                 disable_web_page_preview=True
                 )                
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
