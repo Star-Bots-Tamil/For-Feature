@@ -450,7 +450,7 @@ async def grp_brodcst(bot, message):
     await sts.edit(f"<b>Broadcast Completed :-\nCompleted in {time_taken} Seconds.\n\nTotal Chats {total_chats}\nCompleted :- {done} / {total_chats}\nSuccess :- {success}\nFailed :- {failed}</b>")
 
 
-@Client.on_message(filters.command('channel') & filters.user(ADMINS))
+@Client.on_message(filters.command('channels') & filters.user(ADMINS))
 async def channel_info(bot, message):
            
     """Send Basic Information of Channel"""
@@ -771,8 +771,8 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"<b>Successfully Upgraded Your Template For {title} to\n\n{template}</b>")
 
-@Client.on_message(filters.command('set_shortner'))
-async def set_shortner(bot, message):
+@Client.on_message(filters.command('set_shortlink'))
+async def set_shortlink(bot, message):
     chat_type = message.chat.type
     if chat_type == enums.ChatType.PRIVATE:
         return await message.reply_text(f"<b>Hey {message.from_user.mention}, This command only works on groups !</b>")
@@ -796,10 +796,10 @@ async def set_shortner(bot, message):
     await save_group_settings(grpid, 'shortlink', shortlink_url)
     await save_group_settings(grpid, 'shortlink_api', api)
     await save_group_settings(grpid, 'is_shortlink', True)
-    await reply.edit_text(f"<b>Successfully added shortlink API for {title}.\n\nCurrent Shortlink Website: <code>{shortlink_url}</code>\nCurrent API: <code>{api}</code></b>")
+    await reply.edit_text(f"<b>Successfully added Shortlink API for {title}.\n\nCurrent Shortlink Website: <code>{shortlink_url}</code>\nCurrent API: <code>{api}</code></b>")
 
-@Client.on_message(filters.command('get_shortner'))
-async def get_shortner(client, message):
+@Client.on_message(filters.command('get_shortlink'))
+async def get_shortlink(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
@@ -835,8 +835,8 @@ async def get_shortner(client, message):
         return
 
     settings = await get_settings(grp_id)
-    url = settings["url"]
-    api = settings["api"]
+    url = settings["shortlink"]
+    api = settings["shortlink_api"]
     await message.reply_text(f"Shortlink for {title}\n\nURL - {url}\nAPI - {api}")
 
 @Client.on_message(filters.command("set_tutorial"))
@@ -2129,15 +2129,3 @@ async def short(link):
         return error
 
 # Text to PDF
-
-@Client.on_message(filters.private & filters.command(["text2pdf"]) & filters.incoming)
-async def text2PDF(bot, message):
-    try:
-        await message.reply_chat_action(enums.ChatAction.TYPING)
-        lang_code = await getLang(message.chat.id)
-        tTXT, tBTN = await translate(text="pdf2TXT['TEXT']", button="pdf2TXT['font_btn']", order=12121, lang_code=lang_code)
-        await message.reply_text(text=tTXT, reply_markup=tBTN)
-        await message.delete()
-    except Exception as Error:
-        logger.exception("🐞 %s: %s" %(file_name, Error), exc_info=True)
-	    
