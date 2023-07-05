@@ -985,7 +985,7 @@ async def save_caption(client, message):
     try:
         caption = message.text.split(" ", 1)[1]
     except:
-        return await message.reply_text("**__Use this Command to Set the Custom Caption for Your Files. For Setting Your Caption Send Caption in the Format\n`/set_caption`__\n\nFile Caption Keys\n• `{file_name}` :- Replaced by the Filename.\n• `{file_size}` :- Replaced by the Filesize.\n• {file_caption}` :- Replaced by the Captain of Videos.\n\nExample :- `/set_caption <b>File Name :- {file_name}\n\n💾 File Size :- {file_size}\n\n✍🏻 File Caption :- {file_caption}</b>`\n\n⚠️ Note :- You Can Check the Current Caption using /get_caption**")
+        return await message.reply_text("<b>__Use this Command to Set the Custom Caption for Your Files. For Setting Your Caption Send Caption in the Format\n`/set_caption`__\n\nFile Caption Keys\n• `{file_name}` :- Replaced by the Filename.\n• `{file_size}` :- Replaced by the Filesize.\n• {file_caption}` :- Replaced by the Captain of Videos.\n\nExample :- `/set_caption <b>File Name :- {file_name}\n\n💾 File Size :- {file_size}\n\n✍🏻 File Caption :- {file_caption}</b>`\n\n⚠️ Note :- You Can Check the Current Caption using /get_caption</b>")
     
     await save_group_settings(grp_id, 'caption', caption)
     await message.reply_text(f"Successfully changed caption for {title} to\n\n{caption}")
