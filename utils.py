@@ -6,6 +6,7 @@ import asyncio
 from pyrogram.types import Message, InlineKeyboardButton
 from pyrogram import enums
 from typing import Union
+from database.join_reqs import JoinReqs as db2
 from Script import script
 import re
 import pytz
