@@ -175,7 +175,7 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if (AUTH_CHANNEL or REQ_CHANNEL or STAR_MOVIESS_TAMIL) and not await is_subscribed(client, message):
+    if (AUTH_CHANNEL or STAR_MOVIESS_TAMIL or REQ_CHANNEL) and not await is_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
             invite_link2 = await client.create_chat_invite_link(int(STAR_MOVIESS_TAMIL))
