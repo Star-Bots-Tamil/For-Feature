@@ -23,7 +23,7 @@ from database.filters_mdb import (
     find_filter,
     get_filters,
 )
-from database.gfilters_mdb import (
+from database.gfilter_mdb import (
     find_gfilter,
     get_gfilters,
     del_allg
@@ -35,7 +35,6 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
-
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
