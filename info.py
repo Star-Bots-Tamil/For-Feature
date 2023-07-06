@@ -23,6 +23,10 @@ OWNER_ID = int(getenv("OWNER_ID", "1391556668"))
 CACHE_TIME = int(environ.get('CACHE_TIME', 1000))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 PICS = (environ.get('PICS', 'https://graph.org/file/700b279c54f0d8809fccb.jpg https://graph.org/file/1412d9f93d77c350d8268.jpg')).split()
+NOR_IMG = environ.get("NOR_IMG", "https://telegra.ph/file/46443096bc6895c74a716.jpg")
+MELCOW_VID = environ.get("MELCOW_VID", "https://telegra.ph/file/451f038b4e7c2ddd10dc0.mp4")
+SPELL_IMG = environ.get("SPELL_IMG", "https://telegra.ph/file/5e2d4418525832bc9a1b9.jpg")
+NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'False')), False)
 BOT_START_TIME = time()
 
 # Admins, Channels & Users
@@ -67,6 +71,9 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '')).
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), True)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "False")), True)
+GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+va6nunx_ddQ4ZWNl')
+CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Star_Moviess_Tamil')
+MSG_ALRT = environ.get('MSG_ALRT', 'Wʜᴀᴛ Aʀᴇ Yᴏᴜ Lᴏᴏᴋɪɴɢ Aᴛ ?')
 
 ## Extra Features ##
     
