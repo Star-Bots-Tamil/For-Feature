@@ -175,10 +175,11 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
-    if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, message):
+    if (AUTH_CHANNEL or REQ_CHANNEL or STAR_MOVIESS_TAMIL) and not await is_subscribed(client, message):
         try:
             invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-            invite_link2 = await client.create_chat_invite_link(int(REQ_CHANNEL))		
+            invite_link2 = await client.create_chat_invite_link(int(STAR_MOVIESS_TAMIL))
+	    invite_link3 = await client.create_chat_invite_link(int(REQ_CHANNEL))
         except ChatAdminRequired:
             logger.error("Mᴀᴋᴇ sᴜʀᴇ Bᴏᴛ ɪs ᴀᴅᴍɪɴ ɪɴ Fᴏʀᴄᴇsᴜʙ ᴄʜᴀɴɴᴇʟ")
             return
@@ -191,6 +192,11 @@ async def start(client, message):
             [
                 InlineKeyboardButton(
                     "❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link2.invite_link
+                )
+	    ],
+            [
+                InlineKeyboardButton(
+                    "❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link3.invite_link
                 )
 	    ]		
         ]
