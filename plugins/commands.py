@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 import os
 import logging
 import random
+import ytthumb
 import asyncio
 from plugins.admin_check import admin_check
 from plugins.extract import extract_time, extract_user                               
@@ -2244,6 +2245,35 @@ async def vsong(client, message: Message):
     for files in (sedlyf, file_stark):
         if files and os.path.exists(files):
             os.remove(files)
+
+@Client.on_message(filters.command(["ytthumb", 'dlthumb']))
+async def send_thumbnail(bot, update):
+    message = await update.reply_text(
+        text="`𝙂𝙚𝙣𝙚𝙧𝙖𝙩𝙞𝙣𝙜 𝙏𝙝𝙪𝙢𝙗𝙣𝙖𝙞𝙡 𝙊𝙛 𝙔𝙤𝙪𝙧 𝙇𝙞𝙣𝙠...`",
+        disable_web_page_preview=True,
+        quote=True
+    )
+    try:
+        if " | " in update.text:
+            video = update.text.split(" | ", -1)[0]
+            quality = update.text.split(" | ", -1)[1]
+        else:
+            video = update.text
+            quality = "sd"
+        thumbnail = ytthumb.thumbnail(
+            video=video,
+            quality=quality
+        )
+        await update.reply_photo(
+            photo=thumbnail,
+            quote=True
+        )
+        await message.delete()
+    except Exception as error:
+        await message.edit_text(
+            text="**Please Use** /ytthumb (youtube link)\n\n**Example:** `/ytthumb https://youtu.be/examplelink`",
+            disable_web_page_preview=True
+	)
 
 BITLY_API = os.environ.get("BITLY_API", "aa2132168583d283fb288625d9352f2c5835512a")
 CUTTLY_API = os.environ.get("CUTTLY_API", "bd3a3ab946d7598ee459331dac9e9568e3d66")
