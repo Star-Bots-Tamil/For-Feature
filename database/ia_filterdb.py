@@ -31,14 +31,12 @@ class Media(Document):
     class Meta:
         indexes = ('$file_name', )
         collection_name = COLLECTION_NAME
-
-
 async def save_file(media):
-    """<b>Save File 📂 in Database</b>"""
+    """Save file in database"""
 
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id, file_ref = unpack_new_file_id(media.file_id)
-    file_name = re.sub(r"(_|\-|\.|\+)", " ", str(media.file_name))
+    file_name = re.sub(r"@\w+|(_|\-|\.|\+)", " ", str(media.file_name))
     try:
         file = Media(
             file_id=file_id,
@@ -47,7 +45,7 @@ async def save_file(media):
             file_size=media.file_size,
             file_type=media.file_type,
             mime_type=media.mime_type,
-            caption=media.caption.html if media.caption else None,
+            caption=media.caption
         )
     except ValidationError:
         logger.exception('Error Occurred While Saving File in Database')
@@ -57,7 +55,7 @@ async def save_file(media):
             await file.commit()
         except DuplicateKeyError:      
             logger.warning(
-                f'{getattr(media, "file_name", "NO_FILE")} is Already Saved in Database'
+                f'{getattr(media, "file_name", "NO_FILE")} is Already Saved in Databas'
             )
 
             return False, 0
@@ -67,27 +65,14 @@ async def save_file(media):
 
 
 
-async def get_search_results(chat_id, query, file_type=None, max_results=10, offset=0, filter=False):
+async def get_search_results(query, file_type=None, max_results=10, offset=0, filter=False):
     """For given query return (results, next_offset)"""
-    if chat_id is not None:
-        settings = await get_settings(int(chat_id))
-        try:
-            if settings['max_btn']:
-                max_results = 10
-            else:
-                max_results = int(MAX_B_TN)
-        except KeyError:
-            await save_group_settings(int(chat_id), 'max_btn', False)
-            settings = await get_settings(int(chat_id))
-            if settings['max_btn']:
-                max_results = 10
-            else:
-                max_results = int(MAX_B_TN)
+
     query = query.strip()
-    #if filter:
-        #better ?
-        #query = query.replace(' ', r'(\s|\.|\+|\-|_)')
-        #raw_pattern = r'(\s|_|\-|\.|\+)' + query + r'(\s|_|\-|\.|\+)'
+    # for better results
+    if filter:
+        query = query.replace(' ', r'(\s|\.|\+|\-|_)')
+        raw_pattern = r'(\s|_|\-|\.|\+)' + query + r'(\s|_|\-|\.|\+)'
     if not query:
         raw_pattern = '.'
     elif ' ' not in query:
@@ -123,7 +108,7 @@ async def get_search_results(chat_id, query, file_type=None, max_results=10, off
     files = await cursor.to_list(length=max_results)
 
     return files, next_offset, total_results
-
+    
 
 
 async def get_file_details(query):
