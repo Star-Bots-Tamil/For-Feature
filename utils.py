@@ -62,7 +62,7 @@ async def is_subscribed(bot, query=None, userid=None):
         return True
 
     if db2().isActive():
-        user = await db2().get_user(query.from_user.id, int(userid))
+        user = await db2().get_user(query.from_user.id)
         if user:
             return True
         else:
@@ -620,8 +620,8 @@ async def get_token(bot, userid, link, fileid):
 async def send_all(bot, userid, files, ident):
     if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(bot, userid):
         try:
-            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
-            invite_link3 = await client.get_chat_join_requests(int(REQ_CHANNEL))
+            invite_link = await bot.get_chat_invite_link(int(AUTH_CHANNEL))
+            invite_link3 = await bot.get_chat_invite_link(int(REQ_CHANNEL))
         except ChatAdminRequired:
             logger.error("Mᴀᴋᴇ sᴜʀᴇ Bᴏᴛ ɪs ᴀᴅᴍɪɴ ɪɴ Fᴏʀᴄᴇsᴜʙ ᴄʜᴀɴɴᴇʟ")
             return
