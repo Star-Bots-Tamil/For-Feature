@@ -179,8 +179,8 @@ async def start(client, message):
         return
     if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, message):
         try:
-            invite_link = await client.get_chat_invite_link(int(AUTH_CHANNEL))
-            invite_link3 = await client.get_chat_join_requests(int(REQ_CHANNEL))
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+            invite_link3 = await client.create_chat_join_requests(int(REQ_CHANNEL))
         except ChatAdminRequired:
             logger.error("Mᴀᴋᴇ sᴜʀᴇ Bᴏᴛ ɪs ᴀᴅᴍɪɴ ɪɴ Fᴏʀᴄᴇsᴜʙ ᴄʜᴀɴɴᴇʟ")
             return
@@ -197,7 +197,7 @@ async def start(client, message):
 	    ],
             [
                 InlineKeyboardButton(
-                    "❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link.invite_link3
+                    "❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url="https://t.me/+YeduZ6Ztq2YwNTdl"
                 )
 	    ]		
         ]
