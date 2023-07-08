@@ -621,7 +621,7 @@ async def send_all(bot, userid, files, ident):
     if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(bot, userid):
         try:
             invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
-            invite_link3 = await client.create_chat_invite_link(int(REQ_CHANNEL))
+            invite_link3 = await client.get_chat_join_requests(int(REQ_CHANNEL))
         except ChatAdminRequired:
             logger.error("Mᴀᴋᴇ sᴜʀᴇ Bᴏᴛ ɪs ᴀᴅᴍɪɴ ɪɴ Fᴏʀᴄᴇsᴜʙ ᴄʜᴀɴɴᴇʟ")
             return
@@ -634,7 +634,7 @@ async def send_all(bot, userid, files, ident):
             ],[
                 InlineKeyboardButton("Join Our Channel", url=CHNL_LNK)
             ],[
-                InlineKeyboardButton("Join Our Request Channel", url="https://t.me/+YeduZ6Ztq2YwNTdl")
+                InlineKeyboardButton("Join Our Request Channel", url=invite_link.invite_link3)
             ],[
                 InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"{pre}#send_all")
             ]]
