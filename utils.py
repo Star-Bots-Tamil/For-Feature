@@ -56,7 +56,8 @@ async def is_subscribed(bot, query=None, userid=None):
         return True
 
     elif db2().isActive():
-        user = await db2().get_user(REQ_CHANNEL, query.from_user.id)
+        userid == None and query != None
+        user = await db2().get_user(query.from_user.id, int(userid))
         if user:
             return True
         else:
