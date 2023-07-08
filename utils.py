@@ -60,7 +60,9 @@ async def is_subscribed(bot, query=None, userid=None):
         return True
         
     if db2().isActive():
-        userid == None and query != None:
+        return True    
+    try:        
+        if userid == None and query != None:
         user = await db2().get_user(query.from_user.id, int(userid))
     else:        
         user:
