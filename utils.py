@@ -50,7 +50,7 @@ class temp(object):
     SEND_ALL_TEMP = {}
     KEYWORD = {}    
     
-async def is_subscribed(query, bot):
+async def is_subscribed(bot, query):
 
     if not AUTH_CHANNEL and not REQ_CHANNEL:
         return True
