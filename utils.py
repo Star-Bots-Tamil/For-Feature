@@ -87,7 +87,7 @@ async def is_subscribed(bot, query=None, userid=None):
             if not (user.status == enums.ChatMemberStatus.BANNED):
                 return True
 
-    return False
+        return False
 
 async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
