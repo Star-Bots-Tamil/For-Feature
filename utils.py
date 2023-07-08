@@ -58,12 +58,11 @@ async def is_subscribed(bot, query=None, userid=None):
     
     if not AUTH_CHANNEL and not REQ_CHANNEL:
         return True
-    elif (int(query.from_user.id)) in ADMINS:
+    elif callback_query.from_user.id in ADMINS:
         return True
 
-
     if db2().isActive():
-        user = await db2().get_user(query.from_user.id)
+        user = await db2().get_user(callback_query.from_user.id)
         if user:
             return True
         else:
