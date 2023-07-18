@@ -443,3 +443,7 @@ Delete A Lot Of Messages From Groups!
 🚯 ᴅᴏɴᴛ ᴜꜱᴇ ➠ ':(!,./)"""
     
 REQ_TO_ADMIN = """<b>😒 Currently Unavailable to My Database or Not Released This Movie 🎥 ! We are Really Sorry for Inconvenience..!\n Have Patience..! Our Greatest 👨🏻‍✈️ Admins Will Upload This Movie 🎥 As Soon as Possible.!\n\nRequest to Our Greatest 👨🏻‍✈️ Admins</b>"""
+
+SPELL_TEXT = """
+**__Hello 👋 {mention}**__
+**__Couldn't Find {query} ?  Please Click Your Request Name**__"""
