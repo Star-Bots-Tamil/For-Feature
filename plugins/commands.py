@@ -1248,6 +1248,51 @@ async def get_welcome(client, message):
     welcome = settings["welcome_text"]
     await message.reply_text(f"<b>Welcome Message for {title}\n\nYour Group's Welcome Message\n\n</b>{welcome}")
 
+@Client.on_message((filters.private | filters.group) & filters.command('set_spellcheck'))
+async def setspell(client, message):
+    sts = await message.reply("⏳️")
+    await asyncio.sleep(0.3)
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f" 𝚈𝙾𝚄𝚁 𝙰𝚁𝙴 𝙰𝙽𝙾𝙽𝚈𝙼𝙾𝚄𝚂 𝙰𝙳𝙼𝙸𝙽. /connect {message.chat.id} 𝙸𝙽 𝙿𝙼")
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("𝙼𝙰𝙺𝙴 𝚂𝚄𝚁𝙴 𝙸𝙰𝙼 𝙿𝚁𝙴𝚂𝙴𝙽𝚃 𝙸𝙽 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿..!", quote=True)
+                return
+        else:
+            await message.reply_text("𝙸𝙰𝙼 𝙽𝙾𝚃 𝙲𝙾𝙽𝙽𝙴𝙲𝚃𝙴𝙳 𝙰𝙽𝚃 𝙶𝚁𝙾𝚄𝙿..!", quote=True)
+            return
+
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grp_id = message.chat.id
+        title = message.chat.title
+
+    else:
+        return
+
+    member = await client.get_chat_member(grp_id, userid)
+    if (
+            member.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and member.status != enums.ChatMemberStatus.OWNER
+            and userid not in ADMINS
+    ):
+        return
+
+    if len(message.command) < 2:
+        return await sts.edit("𝙷𝙾𝚆 𝚃𝙾 𝚄𝚂𝙴 𝚃𝙷𝙸𝚂 𝙲𝙾𝙼𝙼𝙰𝙽𝙳..!", reply_markup=InlineKeyboardMarkup( [[ InlineKeyboardButton("𝙲𝙻𝙸𝙲𝙺 𝙷𝙴𝚁𝙴", callback_data="spellcheck") ]] ))
+
+    spell_check_text = message.text.split(" ", 1)[1]
+    await save_group_settings(grp_id, 'spelltext', spell_check_text)
+    await save_group_settings(grpid, 'spell_check', True)
+    await sts.edit(f"""𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 𝙲𝙷𝙰𝙽𝙶𝙴𝙳 𝚂𝙴𝚃 𝚂𝙿𝙴𝙻𝙻 𝙲𝙷𝙴𝙲𝙺 𝙵𝙾𝚁 {title} 𝚃𝙾\n\n{spell_check_text}""", reply_markup=InlineKeyboardMarkup( [[ InlineKeyboardButton("× 𝙲𝙻𝙾𝚂𝙴 ×", callback_data="close") ]] ))
+
 @Client.on_message(filters.command("paste"))
 async def paste_func(_, message: Message):
     if not message.reply_to_message:
