@@ -1322,7 +1322,7 @@ def _onUnMuteRequest(client, cb):
       else:
         client.answer_callback_query(cb.id, text="❗ Warning: Don't click the button if you can speak freely.", show_alert=True)
 
-@Client.on_message(filters.text & ~filters.private & ~filters.edited, group=1)
+@Client.on_message(filters.text & ~filters.private, group=1)
 def _check_member(client, message):
   chat_id = message.chat.id
   chat_db = fs_settings(chat_id)
@@ -1362,7 +1362,7 @@ def _check_member(client, message):
 
 
 @Client.on_message(filters.command("set_fsub") & ~filters.private)
-def fsub(client, message):
+def set_fsub(client, message):
   user = client.get_chat_member(message.chat.id, message.from_user.id)
   if user.status is "creator" or user.user.id in OWNER_ID:
     chat_id = message.chat.id
