@@ -59,7 +59,7 @@ def _check_member(client, message):
               reply_markup=InlineKeyboardMarkup(
              [
                  [
-                     InlineKeyboardButton("💬 Subscribe", url=url)
+                     InlineKeyboardButton("🔥 Join Our Channel", url=url)
                  ],
                  [
                      InlineKeyboardButton("🔕 UnMute Me", callback_data="onUnMuteRequest")
@@ -76,7 +76,7 @@ def _check_member(client, message):
         client.leave_chat(chat_id)
 
 
-@Client.on_message(filters.command("fsub") & ~filters.private)
+@Client.on_message(filters.command("set_fsub") & ~filters.private)
 def fsub(client, message):
   user = client.get_chat_member(message.chat.id, message.from_user.id)
   if user.status is "creator" or user.user.id in Config.SUDO_USERS:
