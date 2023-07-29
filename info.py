@@ -49,6 +49,10 @@ DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://KarthikMovies:KarthikU
 DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
+# sql Database information
+
+SQL_DATABASE_URL = os.environ.get("SQL_DATABASE_URL", "postgres://tufiatbi:uuel5uxW9dhBEfYz5WLHi2UclUzPyiSD@heffalump.db.elephantsql.com/tufiatbi")
+
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001821439025'))
 DELETE_CHANNELS = [int(dch) if id_pattern.search(dch) else dch for dch in environ.get('DELETE_CHANNELS', '0').split()]
