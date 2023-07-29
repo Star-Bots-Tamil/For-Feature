@@ -65,7 +65,7 @@ from pyrogram import Client, filters
 import datetime
 import time
 from database.users_chats_db import db
-from info import ADMINS, OWNER_ID
+from info import ADMINS, OWNER
 from utils import broadcast_messages
 import asyncio
 import re, asyncio, time, shutil, psutil, os, sys
@@ -1328,7 +1328,7 @@ async def _check_member(client, message):
   chat_db = sql.fs_settings(chat_id)
   if chat_db:
     user_id = message.from_user.id
-    if not (await client.get_chat_member(chat_id, user_id)).status in ("administrator", "creator") and not user_id in OWNER_ID:
+    if not (await client.get_chat_member(chat_id, user_id)).status in ("administrator", "creator") and not user_id in OWNER:
       channel = chat_db.channel
       if channel.startswith("-"):
           channel_url = await client.export_chat_invite_link(int(channel))
@@ -1344,7 +1344,7 @@ async def _check_member(client, message):
              reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⚠️ Join Channel", url=channel_url)
+                    InlineKeyboardButton("⚠️ Join Our Channel", url=channel_url)
                 ],
                 [
                     InlineKeyboardButton("✅ UnMute Me", callback_data="onUnMuteRequest")
@@ -1363,7 +1363,7 @@ async def _check_member(client, message):
 @Client.on_message(filters.command(["forcesubscribe", "set_fsub"]) & ~filters.private)
 async def config(client, message):
   user = await client.get_chat_member(message.chat.id, message.from_user.id)
-  if user.status == "creator" or user.user.id in OWNER_ID:
+  if user.status == "creator" or user.user.id in OWNER:
     chat_id = message.chat.id
     if len(message.command) > 1:
       input_str = message.command[1]
