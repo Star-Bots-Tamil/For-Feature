@@ -85,7 +85,7 @@ def fsub(client, message):
       input_str = message.command[1]
       input_str = input_str.replace("@", "")
       if input_str.lower() in ("off", "no", "disable"):
-        sql.disapprove(chat_id)
+        disapprove(chat_id)
         message.reply_text("❌ **Force Subscribe is Disabled Successfully.**")
       elif input_str.lower() in ('clear'):
         sent_message = message.reply_text('**Unmuting all members who are muted by me...**')
