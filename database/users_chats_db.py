@@ -171,18 +171,18 @@ class Database:
     async def get_db_size(self):
         return (await self.db.command("dbstats"))['dataSize']
 
-def fs_settings(chat_id: int):
+def fs_settings(self, chat_id: int):
     _x = self.col.find_one({"chat_id": chat_id})
     if _x:
         return _x
     return None
 
 
-def add_channel(chat_id: int, channel):
+def add_channel(self, chat_id: int, channel):
     self.col.update_one({"chat_id": chat_id}, {"$set": {"channel": channel}}, upsert=True)
 
 
-def disapprove(chat_id: int):
+def disapprove(self, chat_id: int):
     self.col.delete_one({"chat_id": chat_id})
 
 db = Database(DATABASE_URI, DATABASE_NAME)
