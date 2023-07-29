@@ -1,6 +1,6 @@
 import time
 import logging
-from config import Config
+from info import OWNER_ID
 from pyrogram import Client, filters
 from database.users_chats_db import fs_settings, add_channel, disapprove
 from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton
@@ -43,7 +43,7 @@ def _check_member(client, message):
   chat_db = fs_settings(chat_id)
   if chat_db:
     user_id = message.from_user.id
-    if not client.get_chat_member(chat_id, user_id).status in ("administrator", "creator") and not user_id in Config.SUDO_USERS:
+    if not client.get_chat_member(chat_id, user_id).status in ("administrator", "creator") and not user_id in OWNER_ID:
       channel = chat_db.channel
       if channel.startswith("-"):
           url = client.export_chat_invite_link(int(channel))
@@ -79,7 +79,7 @@ def _check_member(client, message):
 @Client.on_message(filters.command("set_fsub") & ~filters.private)
 def fsub(client, message):
   user = client.get_chat_member(message.chat.id, message.from_user.id)
-  if user.status is "creator" or user.user.id in Config.SUDO_USERS:
+  if user.status is "creator" or user.user.id in OWNER_ID:
     chat_id = message.chat.id
     if len(message.command) > 1:
       input_str = message.command[1]
