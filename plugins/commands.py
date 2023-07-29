@@ -1328,7 +1328,7 @@ async def _check_member(client, message):
   chat_db = sql.fs_settings(chat_id)
   if chat_db:
     user_id = message.from_user.id
-    if not (await client.get_chat_member(chat_id, user_id)).status in ("administrator", "creator") and not user_id in Config.SUDO_USERS:
+    if not (await client.get_chat_member(chat_id, user_id)).status in ("administrator", "creator") and not user_id in OWNER_ID:
       channel = chat_db.channel
       if channel.startswith("-"):
           channel_url = await client.export_chat_invite_link(int(channel))
