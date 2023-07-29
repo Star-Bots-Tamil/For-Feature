@@ -5,7 +5,7 @@ import random
 import ytthumb
 import asyncio
 import time
-from database.users_chats_db import fs_settings, add_channel, disapprove
+from database.fsub_sql import fs_settings, add_channel, disapprove
 from countryinfo import CountryInfo
 from plugins.admin_check import admin_check
 from plugins.extract import extract_time, extract_user                               
