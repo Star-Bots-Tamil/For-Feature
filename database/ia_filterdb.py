@@ -36,7 +36,7 @@ async def save_file(media):
 
     # TODO: Find better way to get same file_id for same media to avoid duplicates
     file_id, file_ref = unpack_new_file_id(media.file_id)
-    file_name = re.sub(r"@\w+|http\S+|www+|(_|\.|\+)", " ", str(media.file_name))
+    file_name = re.sub(r"http\S+|www+|(_|\.|\+)|@\w+", " ", str(media.file_name))
     try:
         file = Media(
             file_id=file_id,
@@ -55,7 +55,7 @@ async def save_file(media):
             await file.commit()
         except DuplicateKeyError:      
             logger.warning(
-                f'{getattr(media, "file_name", "NO_FILE")} is Already Saved in Databas'
+                f'{getattr(media, "file_name", "NO_FILE")} is Already Saved in Database'
             )
 
             return False, 0
