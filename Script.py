@@ -449,3 +449,5 @@ REQ_TO_ADMIN = """<b>😒 Currently Unavailable to My Database or Not Released T
 SPELL_TEXT = """
 **__Hello 👋 {mention}**__
 **__Couldn't Find {query} ?  Please Click Your Request Name**__"""
+
+TOP_ALRT_MSG = """Cʜᴇᴄᴋɪɴɢ Fᴏʀ Mᴏᴠɪᴇ Iɴ Dᴀᴛᴀʙᴀsᴇ..."""
