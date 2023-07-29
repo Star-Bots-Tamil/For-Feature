@@ -65,7 +65,7 @@ from pyrogram import Client, filters
 import datetime
 import time
 from database.users_chats_db import db
-from info import ADMINS
+from info import ADMINS, OWNER_ID
 from utils import broadcast_messages
 import asyncio
 import re, asyncio, time, shutil, psutil, os, sys
