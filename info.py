@@ -51,7 +51,7 @@ COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # sql Database information
 
-SQL_DATABASE_URL = os.environ.get("SQL_DATABASE_URL", "postgres://tufiatbi:uuel5uxW9dhBEfYz5WLHi2UclUzPyiSD@heffalump.db.elephantsql.com/tufiatbi")
+SQL_DATABASE_URL = environ.get("SQL_DATABASE_URL", "postgres://tufiatbi:uuel5uxW9dhBEfYz5WLHi2UclUzPyiSD@heffalump.db.elephantsql.com/tufiatbi")
 
 # Others
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1001821439025'))
