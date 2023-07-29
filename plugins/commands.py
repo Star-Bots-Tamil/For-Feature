@@ -6,6 +6,8 @@ import ytthumb
 import asyncio
 import time
 from database import fsub_sql as sql
+from pyrogram.types import ChatPermissions, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 from countryinfo import CountryInfo
 from plugins.admin_check import admin_check
 from plugins.extract import extract_time, extract_user                               
