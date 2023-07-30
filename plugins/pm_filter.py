@@ -452,7 +452,7 @@ async def advantage_spoll_choker(bot, query):
             reqstr = await bot.get_users(reqstr1)
             settings = await get_settings(query.message.chat.id)
             if settings["spell_check"]:
-                search = message.text
+                search = query.message.text
                 reply = search.replace(" ", '+')
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 buttons = [[ InlineKeyboardButton("🔍 Search to Google 🔎", url=f"https://www.google.com/search?q={reply}") ],[ InlineKeyboardButton("× 𝙲𝙻𝙾𝚂𝙴 ×", callback_data="close") ]]
