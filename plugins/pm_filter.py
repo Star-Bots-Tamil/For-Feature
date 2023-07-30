@@ -438,7 +438,7 @@ async def advantage_spoll_choker(bot, query):
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movie = movies[(int(movie_))]
-    await query.answer(script.TOP_ALRT_MSG)
+    await query.answer(f"Checking Movie in Our Database")
     gl = await global_filters(bot, query.message, text=movie)
     if gl == False:
         k = await manual_filters(bot, query.message, text=movie)
@@ -453,7 +453,7 @@ async def advantage_spoll_choker(bot, query):
             if settings["spell_check"]:
                 reply = search.replace(" ", '+')
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
-                buttons = [[ InlineKeyboardButton("🔍 𝚂𝙴𝙰𝚁𝙲𝙷 𝚃𝙾 𝙶𝙾𝙾𝙶𝙻𝙴 🔎", url=f"https://www.google.com/search?q={reply}") ],[ InlineKeyboardButton("× 𝙲𝙻𝙾𝚂𝙴 ×", callback_data="close") ]]
+                buttons = [[ InlineKeyboardButton("🔍 Search to Google 🔎", url=f"https://www.google.com/search?q={reply}") ],[ InlineKeyboardButton("× 𝙲𝙻𝙾𝚂𝙴 ×", callback_data="close") ]]
                 spell = await update.reply_text(text=settings["spelltext"].format(query=search, first_name=update.from_user.first_name, last_name=update.from_user.last_name, title=update.chat.title, mention=update.from_user.mention), disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))           
                 await asyncio.sleep(60)
                 await spell.delete()                    
