@@ -452,6 +452,8 @@ async def advantage_spoll_choker(bot, query):
             reqstr = await bot.get_users(reqstr1)
             settings = await get_settings(query.message.chat.id)
             if settings["spell_check"]:
+                mov = re.sub(r"(\:|\-|\_|\,|\;|\?|IMDb|Streaming|Online|Netflix|Episode|Season|movies|Movies)", " ", ttte, flags=re.IGNORECASE)
+                x = mov.split()
                 reply = "+".join(x)
                 #reply = search.replace(" ", '+')
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
