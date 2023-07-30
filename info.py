@@ -3,6 +3,7 @@ from os import environ
 from time import time
 from os import getenv
 
+search = re.compile(r'^.\d+$')
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
     if value.lower() in ["true", "yes", "1", "enable", "y"]:
