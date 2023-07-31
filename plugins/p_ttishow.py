@@ -58,7 +58,7 @@ async def save_group(bot, message):
                         try:            
                             welcometext = settings["welcometext"]
                             new_members = update.from_user.mention
-                            starbotstamil = await message.reply_video(
+                            await message.reply_video(
                             video="https://telegra.ph/file/11d612c9f9a61c19427b0.mp4",                                               
                                                              caption=(welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members),
                                                              reply_markup=InlineKeyboardMarkup(
@@ -72,9 +72,7 @@ async def save_group(bot, message):
                                                               ),
                                                               parse_mode=enums.ParseMode.HTML,
                              )
-        await asyncio.sleep(1000)
-        await starbotstamil.delete()
-
+    
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
     if len(message.command) == 1:
