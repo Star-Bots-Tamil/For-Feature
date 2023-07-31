@@ -458,7 +458,7 @@ async def advantage_spoll_choker(bot, query):
                 #reply = search.replace(" ", '+')
                 await bot.send_message(chat_id=LOG_CHANNEL, text=(script.NORSLTS.format(reqstr.id, reqstr.mention, movie)))
                 buttons = [[ InlineKeyboardButton("🔍 Search to Google 🔎", url=f"https://www.google.com/search?q={reply}") ],[ InlineKeyboardButton("🚫 Close", callback_data="close_data") ]]
-                spell = await query.message.reply_photo(photo=(SPELL_IMG), text=settings["spelltext"].format(query=movie, first_name=query.from_user.first_name, last_name=query.from_user.last_name, mention=query.from_user.mention), disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))           
+                spell = await query.message.reply_text(text=settings["spelltext"].format(query=movie, first_name=query.from_user.first_name, last_name=query.from_user.last_name, mention=query.from_user.mention), disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))           
                 await asyncio.sleep(60)
                 await spell.delete()                    
 
