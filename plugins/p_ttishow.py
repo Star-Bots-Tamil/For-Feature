@@ -53,7 +53,7 @@ async def save_group(bot, message):
                         await (temp.MELCOW['welcome']).delete()
                     except:
                         pass
-                if settings['welcome_text']
+                if settings['welcome_text']:
                     try:
                         try:            
                             welcometext = settings["welcometext"]
@@ -71,7 +71,7 @@ async def save_group(bot, message):
                                                                                       ]]
                                                               ),
                                                               parse_mode=enums.ParseMode.HTML,
-                             )
+                )
     
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
