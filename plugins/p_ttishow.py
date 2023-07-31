@@ -60,7 +60,7 @@ async def save_group(bot, message):
                             new_members = update.from_user.mention
                             await message.reply_video(
                             video="https://telegra.ph/file/11d612c9f9a61c19427b0.mp4",                                               
-                                                             caption=(welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members),
+                                                             caption=(welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members), parse_mode=enums.ParseMode.HTML,
                                                              reply_markup=InlineKeyboardMarkup(
                                                                                      [[
                                                                                         InlineKeyboardButton('🚫 Group Rules 🚫', url="http://t.me/MissRose_bot?start=rules_-1001650088903")
@@ -69,9 +69,9 @@ async def save_group(bot, message):
                                                                                      ],[
                                                                                         InlineKeyboardButton("🤖 Bot Updates", url="https://t.me/Star_Bots_Tamil")
                                                                                       ]]
-                                                              ),
-                                                              parse_mode=enums.ParseMode.HTML,
-                            )
+                                                              ))
+                                                              
+                            
     
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
