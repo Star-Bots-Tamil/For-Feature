@@ -53,20 +53,27 @@ async def save_group(bot, message):
                         await (temp.MELCOW['welcome']).delete()
                     except:
                         pass
-                settings['welcome_text'] = await message.reply_video(
-                video="https://telegra.ph/file/11d612c9f9a61c19427b0.mp4",                                               
-                                                 caption=f'<b>Hello 👋🏻 {u.mention},\nWelcome to {message.chat.title} Group.\nWe are Providing Tamil, Telugu, Hindi, Malayalam, Kannada, English and Extra... I Can Support Upto 4GB File. Keep me Join to Our Official Channels to Receive Bot & Movies Updates in <a href=https://t.me/Star_Bots_Tamil><b></b>Star Bots Tamil</a> & <a href=https://t.me/Star_Moviess_Tamil><b></b>Star Movies Tamil</a>.</b>',
-                                                 reply_markup=InlineKeyboardMarkup(
-                                                                         [[
-                                                                           InlineKeyboardButton('🚫 Group Rules 🚫', url="http://t.me/MissRose_bot?start=rules_-1001650088903")
-                                                                        ],[    
-                                                                           InlineKeyboardButton('🎥 Movie Updates', url="https://t.me/Star_Moviess_Tamil")
-                                                                        ],[
-                                                                           InlineKeyboardButton("🤖 Bot Updates", url="https://t.me/Star_Bots_Tamil")
-                                                                         ]]
-                                                 ),
-                                                 parse_mode=enums.ParseMode.HTML,
-                )                
+                if settings['welcome_text']
+                    try:
+                        try:            
+                            welcometext = settings["welcometext"]
+                            new_members = update.from_user.mention
+                            starbotstamil = await message.reply_video(
+                            video="https://telegra.ph/file/11d612c9f9a61c19427b0.mp4",                                               
+                                                             caption=(welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members),
+                                                             reply_markup=InlineKeyboardMarkup(
+                                                                                     [[
+                                                                                        InlineKeyboardButton('🚫 Group Rules 🚫', url="http://t.me/MissRose_bot?start=rules_-1001650088903")
+                                                                                     ],[    
+                                                                                        InlineKeyboardButton('🎥 Movie Updates', url="https://t.me/Star_Moviess_Tamil")
+                                                                                     ],[
+                                                                                        InlineKeyboardButton("🤖 Bot Updates", url="https://t.me/Star_Bots_Tamil")
+                                                                                      ]]
+                                                              ),
+                                                              parse_mode=enums.ParseMode.HTML,
+                             )
+                            await asyncio.sleep(1000)
+                            await starbotstamil.delete()
 
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
