@@ -3,7 +3,7 @@ from pyrogram import Client, emoji, filters
 from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument, InlineQuery
 from database.ia_filterdb import get_search_results
-from utils import is_subscribed, get_size, temp
+from utils import is_subscribed, get_size, temp, get_settings, save_group_settings
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, REQ_CHANNEL
 from googletrans import Translator
 from pyrogram.types import (
@@ -65,10 +65,12 @@ async def answer(bot, query):
     for file in files:
         title=file.file_name
         size=get_size(file.file_size)
+        FILE_CAPTION = settings["caption"]
+        settings = await get_settings(message.chat.id)
         f_caption=file.caption
-        if CUSTOM_FILE_CAPTION:
+        if settings["caption"]:
             try:
-                f_caption=CUSTOM_FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
+                f_caption=FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
             except Exception as e:
                 logger.exception(e)
                 f_caption=f_caption
