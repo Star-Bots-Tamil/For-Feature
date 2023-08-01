@@ -6,6 +6,7 @@ from database.ia_filterdb import get_search_results
 from utils import is_subscribed, get_size, temp, get_settings, save_group_settings
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, REQ_CHANNEL
 from googletrans import Translator
+from database.connections_mdb import active_connection
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -31,7 +32,7 @@ async def inline_users(query: InlineQuery):
 @Client.on_inline_query()
 async def answer(bot, query):
     """Show search results for given inline query"""
-    
+    chat_id = await active_connection(str(query.from_user.id))    
     if not await inline_users(query):
         await query.answer(results=[],
                            cache_time=0,
