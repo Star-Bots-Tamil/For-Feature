@@ -155,8 +155,12 @@ async def re_enable_chat(bot, message):
 
 
 @Client.on_message(filters.command('stats') & filters.incoming)
-async def get_ststs(bot, message):
-    rju = await message.reply('<b>Accessing Status 📊 Details...</b>')
+async def get_stats(bot, message):
+    buttons = [[
+        InlineKeyboardButton('🌀 Refresh', callback_data='rfrsh')
+    ]]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    star = await message.reply('<b>Accessing Status 📊 Details...</b>')
     total_users = await db.total_users_count()
     totl_chats = await db.total_chat_count()
     files = await Media.count_documents()
@@ -164,7 +168,9 @@ async def get_ststs(bot, message):
     free = 536870912 - size
     size = get_size(size)
     free = get_size(free)
-    await rju.edit(script.STATUS_TXT.format(files, total_users, totl_chats, size, free))
+    await star.edit(script.STATUS_TXT.format(files, total_users, totl_chats, size, free)
+                   reply_markup=reply_markup,
+                   parse_mode=enums.ParseMode.HTML)
 
 
 # a function for trespassing into others groups, Inspired by a Vazha
