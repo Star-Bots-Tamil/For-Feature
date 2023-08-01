@@ -68,7 +68,7 @@ async def answer(bot, query):
     for file in files:
         title=file.file_name
         size=get_size(file.file_size)
-        settings = await get_settings(query.chat.id)
+        settings = await get_settings(chat_id)
         FILE_CAPTION = settings["caption"]
         f_caption=file.caption
         if settings["caption"]:
