@@ -157,7 +157,7 @@ async def re_enable_chat(bot, message):
 @Client.on_message(filters.command('stats') & filters.incoming)
 async def get_stats(bot, message):
     buttons = [[
-        InlineKeyboardButton('🌀 Refresh', callback_data='rfrsh')
+        InlineKeyboardButton('🌀 Refresh', callback_data='refresh')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     star = await message.reply('<b>Accessing Status 📊 Details...</b>')
