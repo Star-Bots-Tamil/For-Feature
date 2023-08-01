@@ -168,7 +168,7 @@ async def get_stats(bot, message):
     free = 536870912 - size
     size = get_size(size)
     free = get_size(free)
-    await star.edit(script.STATUS_TXT.format(files, total_users, totl_chats, size, free)
+    await star.edit(script.STATUS_TXT.format(files, total_users, totl_chats, size, free),
                    reply_markup=reply_markup,
                    parse_mode=enums.ParseMode.HTML)
 
