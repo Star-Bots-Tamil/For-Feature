@@ -46,7 +46,7 @@ async def save_group(bot, message):
             reply_markup=reply_markup)
     else:
         settings = await get_settings(message.chat.id)
-        new_members = update.from_user.mention
+        new_members = message.from_user.mention
         welcome_text = settings["welcome_text"]
         if settings["welcome"]:
             for u in message.new_chat_members:
@@ -57,7 +57,7 @@ async def save_group(bot, message):
                         pass
                 star = await message.reply_video(
                 video="https://telegra.ph/file/11d612c9f9a61c19427b0.mp4",                                               
-                                                 caption=welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members),
+                                                 caption=welcome_text.format(first_name = message.from_user.first_name, last_name = message.from_user.last_name, username = f"@{message.from_user.username}" or None, group_name = message.chat.title, mention = new_members),
                                                  reply_markup=InlineKeyboardMarkup(
                                                                          [[
                                                                            InlineKeyboardButton('🚫 Group Rules 🚫', url="http://t.me/MissRose_bot?start=rules_-1001650088903")
