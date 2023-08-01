@@ -57,7 +57,7 @@ async def save_group(bot, message):
                         pass
                 star = await message.reply_video(
                 video="https://telegra.ph/file/11d612c9f9a61c19427b0.mp4",                                               
-                                                 caption=welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members), disable_web_page_preview=True,
+                                                 caption=welcome_text.format(first_name = update.from_user.first_name, last_name = update.from_user.last_name, username = f"@{update.from_user.username}" or None, group_name = update.chat.title, mention = new_members),
                                                  reply_markup=InlineKeyboardMarkup(
                                                                          [[
                                                                            InlineKeyboardButton('🚫 Group Rules 🚫', url="http://t.me/MissRose_bot?start=rules_-1001650088903")
