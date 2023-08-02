@@ -264,10 +264,10 @@ async def start(client, message):
         for msg in msgs:
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
-	    chat_id = message.chat.id
-	    settings = await get_settings(f_chat_id)
-	    FILE_CAPTION = settings["caption"]
             f_caption=msg.get("caption", "")
+	    chat_id = message.chat.id
+	    settings = await get_settings(chat_id)
+	    FILE_CAPTION = settings["caption"]
             if settings["caption"]:
                 try:
                     f_caption=FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
