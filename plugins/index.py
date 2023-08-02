@@ -13,6 +13,24 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 lock = asyncio.Lock()
 
+@Client.on_message(filters.command('index'))
+async def index(bot, message):
+    """Save channel or group files"""
+    if lock.locked():
+        await message.reply('<b>Wait until previous process complete.</b>')
+    else:
+        while True:
+            last_msg = await bot.ask(text = "</b>Forward me last message of a channel which I should save to my database.\n\nYou can forward posts from any public channel, but for private channels bot should be an admin in the channel.\n\nMake sure to forward with quotes (Not as a copy)</b>", chat_id = message.from_user.id)
+            try:
+                last_msg_id = last_msg.forward_from_message_id
+                if last_msg.forward_from_chat.username:
+                    chat_id = last_msg.forward_from_chat.username
+                else:
+                    chat_id=last_msg.forward_from_chat.id
+                await bot.get_messages(chat_id, last_msg_id)
+                break
+            except Exception as e:
+                await last_msg.reply_text(f"This Is An Invalid Message, Either the channel is private and bot is not an admin in the forwarded chat, or you forwarded message as copy.\nError caused Due to</b> <code>{e}</code>")
 
 @Client.on_callback_query(filters.regex(r'^index'))
 async def index_files(bot, query):
