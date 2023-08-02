@@ -264,7 +264,8 @@ async def start(client, message):
         for msg in msgs:
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
-	    settings = await get_settings(message.chat.id)
+	    chat_id = message.chat.id
+	    settings = await get_settings(f_chat_id)
 	    FILE_CAPTION = settings["caption"]
             f_caption=msg.get("caption", "")
             if settings["caption"]:
@@ -330,7 +331,7 @@ async def start(client, message):
         async for msg in client.iter_messages(int(f_chat_id), int(l_msg_id), int(f_msg_id)):
             if msg.media:
                 media = getattr(msg, msg.media.value)
-		settings = await get_settings(query.chat.id)
+		settings = await get_settings(f_chat_id)
 		FILE_CAPTION = settings["caption"]
                 if settings["caption"]:
                     try:
