@@ -264,7 +264,7 @@ async def start(client, message):
         for msg in msgs:
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
-	    settings = await get_settings(query.chat.id)
+	    settings = await get_settings(msg.chat.id)
 	    FILE_CAPTION = settings["caption"]
             f_caption=msg.get("caption", "")
             if settings["caption"]:
