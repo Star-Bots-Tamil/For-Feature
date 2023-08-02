@@ -102,6 +102,7 @@ AUTO_FFILTER = is_enabled((environ.get('AUTO_FFILTER', "True")), True)
 DOWNLOAD_TEXT_NAME = "⚡ How To Download ⚡"
 DOWNLOAD_TEXT_URL = "https://telegram.me/Star_Moviess_Bot?start=files_BAADBQAD3QwAAitd-Fb0taAQAAH02-QWBA"
 TUTORIAL = (environ.get('TUTORIAL', 'https://telegram.me/Star_Moviess_Bot?start=files_BAADBQAD3QwAAitd-Fb0taAQAAH02-QWBA'))
+IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
 
    # Custom Caption Under Button #
 CAPTION_BUTTON = "🔥 Join Our Channel 🔥"
