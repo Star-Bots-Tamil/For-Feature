@@ -16,7 +16,7 @@ lock = asyncio.Lock()
 @Client.on_message(filters.command('index'))
 async def index(bot, message):
     """Save channel or group files"""
-    await message.reply_text(text = "</b>Forward me last message of a channel which I should save to my database.\n\nYou can forward posts from any public channel, but for private channels bot should be an admin in the channel.\n\nMake sure to forward with quotes (Not as a copy)</b>")
+    await message.reply_text(text = "<b>Forward me last message of a channel which I should save to my database.\n\nYou can forward posts from any public channel, but for private channels bot should be an admin in the channel.\n\nMake sure to forward with quotes (Not as a copy)</b>")
 
 @Client.on_callback_query(filters.regex(r'^index'))
 async def index_files(bot, query):
