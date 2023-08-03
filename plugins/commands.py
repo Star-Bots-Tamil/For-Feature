@@ -125,7 +125,6 @@ HEROKU_API_KEY = (os.environ.get("HEROKU_API_KEY", "7f5531d8-e346-4eef-98be-13c6
 ERROR_MESSAGE = "**Oops! An Exception Occurred! \n\nError : {}**"
 ADMIN = int(os.environ.get("ADMIN", "1391556668"))
 chat_id = message.chat.id
-settings = await get_settings(chat_id)
 FILE_CAPTION = settings["caption"]
 
 #=====================================================
@@ -157,6 +156,7 @@ async def start(client, message):
         await asyncio.sleep(2) # 😢 https://github.com/EvamariaTG/EvaMaria/blob/master/plugins/p_ttishow.py#L17 😬 wait a bit, before checking.
         if not await db.get_chat(message.chat.id):
             total=await client.get_chat_members_count(message.chat.id)
+	    settings = await get_settings(message.chat.id)
             await client.send_message(LOG_CHANNEL, script.LOG_TEXT_G.format(message.chat.title, message.chat.id, total, "Unknown"))       
             await db.add_chat(message.chat.id, message.chat.title)
         return 
