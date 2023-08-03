@@ -328,8 +328,6 @@ async def start(client, message):
         async for msg in client.iter_messages(int(f_chat_id), int(l_msg_id), int(f_msg_id)):
             if msg.media:
                 media = getattr(msg, msg.media.value)
-		settings = await get_settings(f_chat_id)
-		FILE_CAPTION = settings["caption"]
                 if settings["caption"]:
                     try:
                         f_caption=FILE_CAPTION.format(file_name=getattr(media, 'file_name', ''), file_size=getattr(media, 'file_size', ''), file_caption=getattr(msg, 'caption', ''))
