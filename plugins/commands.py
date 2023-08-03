@@ -124,8 +124,6 @@ from pyrogram.types import Message
 HEROKU_API_KEY = (os.environ.get("HEROKU_API_KEY", "7f5531d8-e346-4eef-98be-13c69630c7bd"))
 ERROR_MESSAGE = "**Oops! An Exception Occurred! \n\nError : {}**"
 ADMIN = int(os.environ.get("ADMIN", "1391556668"))
-chat_id = message.chat.id
-FILE_CAPTION = settings["caption"]
 
 #=====================================================
 
@@ -266,6 +264,9 @@ async def start(client, message):
         for msg in msgs:
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
+            chat_id = msg.chat.id
+            settings = await get_settings(chat_id)
+            FILE_CAPTION = settings["caption"]
             f_caption=msg.get("caption", "")
             if settings["caption"]:
                 try:
@@ -330,6 +331,9 @@ async def start(client, message):
         async for msg in client.iter_messages(int(f_chat_id), int(l_msg_id), int(f_msg_id)):
             if msg.media:
                 media = getattr(msg, msg.media.value)
+	        chat_id = msg.chat.id
+	        settings = await get_settings(chat_id)
+                FILE_CAPTION = settings["caption"]
                 if settings["caption"]:
                     try:
                         f_caption=FILE_CAPTION.format(file_name=getattr(media, 'file_name', ''), file_size=getattr(media, 'file_size', ''), file_caption=getattr(msg, 'caption', ''))
@@ -434,6 +438,9 @@ async def start(client, message):
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
+            chat_id = msg.chat.id
+            settings = await get_settings(chat_id)
+            FILE_CAPTION = settings["caption"]
             f_caption = f"<code>{title}</code>"
             if settings["caption"]:
                 try:
@@ -448,6 +455,9 @@ async def start(client, message):
     files = files_[0]
     title = files.file_name
     size=get_size(files.file_size)
+    chat_id = message.chat.id
+    settings = await get_settings(chat_id)
+    FILE_CAPTION = settings["caption"]
     f_caption=files.caption
     if settings["caption"]:
         try:
