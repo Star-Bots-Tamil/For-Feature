@@ -124,6 +124,9 @@ from pyrogram.types import Message
 HEROKU_API_KEY = (os.environ.get("HEROKU_API_KEY", "7f5531d8-e346-4eef-98be-13c69630c7bd"))
 ERROR_MESSAGE = "**Oops! An Exception Occurred! \n\nError : {}**"
 ADMIN = int(os.environ.get("ADMIN", "1391556668"))
+chat_id = message.chat.id
+settings = await get_settings(chat_id)
+FILE_CAPTION = settings["caption"]
 
 #=====================================================
 
