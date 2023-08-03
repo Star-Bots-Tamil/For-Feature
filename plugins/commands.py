@@ -435,8 +435,6 @@ async def start(client, message):
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
-	    settings = await get_settings(query.chat.id)
-            FILE_CAPTION = settings["caption"]
             f_caption = f"<code>{title}</code>"
             if settings["caption"]:
                 try:
