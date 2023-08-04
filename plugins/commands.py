@@ -444,7 +444,7 @@ async def start(client, message):
             f_caption = f"<code>{title}</code>"
             if settings["caption"]:
                 try:
-                    f_caption=FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='')
+                    f_caption=FILE_CAPTION.format(file_name= '' if title is None else title, file_size='' if size is None else size, file_caption='' if f_caption is None else f_caption)
                 except:
                     return
             await msg.edit_caption(f_caption)
