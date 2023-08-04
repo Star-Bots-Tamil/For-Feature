@@ -36,15 +36,15 @@ async def answer(bot, query):
     if not await inline_users(query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='okDa',
+                           switch_pm_text='Ithu Paid Feature',
                            switch_pm_parameter="hehe")
         return
 
     if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(bot, query):
         await query.answer(results=[],
                            cache_time=0,
-                           switch_pm_text='<b>You have to Subscribe My Channel to use the Bot</b>',
-                           switch_pm_parameter="<b>Subscribe</b>")
+                           switch_pm_text='You have to Join Our Channel to use the Bot',
+                           switch_pm_parameter="Join")
         return
 
     results = []
