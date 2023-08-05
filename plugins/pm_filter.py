@@ -688,7 +688,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         title = files.file_name
         size = get_size(files.file_size)
         f_caption = files.caption
-        grp_id = await active_connection(str(message.from_user.id))
+        grp_id = await active_connection(str(query.message.from_user.id))
         settings = await get_settings(grp_id)
         FILE_CAPTION = settings["caption"]
         if settings["caption"]:
