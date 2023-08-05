@@ -264,8 +264,8 @@ async def start(client, message):
         for msg in msgs:
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
-            chat_id = msg.chat.id
-            settings = await get_settings(int(chat_id))
+            grp_id = await active_connection(str(message.from_user.id))
+            settings = await get_settings(grp_id)
             FILE_CAPTION = settings["caption"]
             f_caption=msg.get("caption", "")
             if settings["caption"]:
@@ -331,8 +331,8 @@ async def start(client, message):
         async for msg in client.iter_messages(int(f_chat_id), int(l_msg_id), int(f_msg_id)):
             if msg.media:
                 media = getattr(msg, msg.media.value)
-                chat_id = msg.chat.id
-                settings = await get_settings(int(chat_id))
+                grp_id = await active_connection(str(message.from_user.id))
+                settings = await get_settings(grp_id)
                 FILE_CAPTION = settings["caption"]
                 if settings["caption"]:
                     try:
@@ -438,8 +438,8 @@ async def start(client, message):
             file = getattr(msg, filetype.value)
             title = file.file_name
             size=get_size(file.file_size)
-            chat_id = msg.chat.id
-            settings = await get_settings(int(chat_id))
+            grp_id = await active_connection(str(message.from_user.id))
+            settings = await get_settings(grp_id)
             FILE_CAPTION = settings["caption"]
             f_caption = f"<code>{title}</code>"
             if settings["caption"]:
@@ -455,8 +455,8 @@ async def start(client, message):
     files = files_[0]
     title = files.file_name
     size=get_size(files.file_size)
-    chat_id = message.chat.id
-    settings = await get_settings(int(chat_id))
+    grp_id = await active_connection(str(message.from_user.id))
+    settings = await get_settings(grp_id)
     FILE_CAPTION = settings["caption"]
     f_caption=files.caption
     if settings["caption"]:
