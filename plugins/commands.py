@@ -243,7 +243,7 @@ async def start(client, message):
         return
     data = message.command[1]
     try:
-        pre, grp_id, file_id = data.split('_', 1)
+        pre, file_id = data.split('_', 1)
     except:
         file_id = data
         pre = ""
@@ -265,7 +265,7 @@ async def start(client, message):
             title = msg.get("title")
             size=get_size(int(msg.get("size", 0)))
             chat_id = msg.chat.id
-            settings = await get_settings(int(grp_id))
+            settings = await get_settings(int(chat_id))
             FILE_CAPTION = settings["caption"]
             f_caption=msg.get("caption", "")
             if settings["caption"]:
@@ -332,7 +332,7 @@ async def start(client, message):
             if msg.media:
                 media = getattr(msg, msg.media.value)
                 chat_id = msg.chat.id
-                settings = await get_settings(int(grp_id))
+                settings = await get_settings(int(chat_id))
                 FILE_CAPTION = settings["caption"]
                 if settings["caption"]:
                     try:
@@ -439,7 +439,7 @@ async def start(client, message):
             title = file.file_name
             size=get_size(file.file_size)
             chat_id = msg.chat.id
-            settings = await get_settings(int(grp_id))
+            settings = await get_settings(int(chat_id))
             FILE_CAPTION = settings["caption"]
             f_caption = f"<code>{title}</code>"
             if settings["caption"]:
@@ -456,7 +456,7 @@ async def start(client, message):
     title = files.file_name
     size=get_size(files.file_size)
     chat_id = message.chat.id
-    settings = await get_settings(int(grp_id))
+    settings = await get_settings(int(chat_id))
     FILE_CAPTION = settings["caption"]
     f_caption=files.caption
     if settings["caption"]:
