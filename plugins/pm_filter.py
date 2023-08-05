@@ -1664,7 +1664,7 @@ async def auto_filter(client, msg, spoll=False):
         InlineKeyboardButton("⚡ Cʜᴇᴄᴋ Bᴏᴛ PM ⚡", url=f"https://t.me/{temp.U_NAME}")
     ])
     btn.insert(0, [
-        InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME, url=await get_tutorial(query.message.chat.id))
+        InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME, url=await get_tutorial(message.chat.id))
     ])
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
