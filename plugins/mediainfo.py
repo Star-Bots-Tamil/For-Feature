@@ -1,10 +1,14 @@
 import tempfile
 import logging
 import os
-
+from Script import script
+from info import info
 from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import aiohttp
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.ERROR)
 
 @Client.on_callback_query(
     filters.create(lambda _, __, query: query.data.startswith("mi"))
@@ -16,7 +20,7 @@ async def _(c, m):
         pass
 
     await m.edit_message_text(
-        ms.ADDED_TO_QUEUE.format(per_user_process_count=Config.MAX_PROCESSES_PER_USER),
+        script.ADDED_TO_QUEUE.format(per_user_process_count=info.MAX_PROCESSES_PER_USER),
     )
     c.process_pool.new_task(
         (
