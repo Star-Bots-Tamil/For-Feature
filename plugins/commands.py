@@ -797,7 +797,9 @@ async def channel_info(bot, message):
 async def log_file(bot, message):
     """Send Log File 📂"""
     try:
-        await message.reply_document('StarMoviesBot.log')
+        await message.reply_document('StarMoviesBot.log', 
+				     InlineKeyboardMarkup([[InlineKeyboardButton("Get Web URL", callback_data='webmi')]])
+		))
     except Exception as e:
         await message.reply(str(e))
 
