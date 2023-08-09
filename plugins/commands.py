@@ -792,14 +792,17 @@ async def channel_info(bot, message):
         await message.reply_document(file)
         os.remove(file)
 
-
 @Client.on_message(filters.command('logs') & filters.user(ADMINS))
 async def log_file(bot, message):
     """Send Log File 📂"""
+    file = 'StarMoviesBot.log'
+    caption = '#Logs'
     try:
-        await message.reply_document('StarMoviesBot.log', 
-				     InlineKeyboardMarkup([[InlineKeyboardButton("Get Web URL", callback_data='webmi')]])
-		))
+        await message.reply_document(
+            file,
+            caption=caption,
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Get Web URL", callback_data='webmi')]])
+	)
     except Exception as e:
         await message.reply(str(e))
 
