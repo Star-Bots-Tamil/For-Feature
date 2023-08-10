@@ -1309,6 +1309,336 @@ async def setspell(client, message):
     await save_group_settings(grpid, 'spell_check', True)
     await sts.edit(f"""𝚂𝚄𝙲𝙲𝙴𝚂𝚂𝙵𝚄𝙻𝙻𝚈 𝙲𝙷𝙰𝙽𝙶𝙴𝙳 𝚂𝙴𝚃 𝚂𝙿𝙴𝙻𝙻 𝙲𝙷𝙴𝙲𝙺 𝙵𝙾𝚁 {title} 𝚃𝙾\n\n{spell_check_text}""", reply_markup=InlineKeyboardMarkup( [[ InlineKeyboardButton("× 𝙲𝙻𝙾𝚂𝙴 ×", callback_data="close") ]] ))
 
+@Client.on_message(filters.command("set_channel"))
+async def set_channel(bot, message):
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        return await message.reply_text("This Command Work Only in group\n\nTry it in your own group")
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grpid = message.chat.id
+        title = message.chat.title
+    else:
+        return
+    userid = message.from_user.id
+    user = await bot.get_chat_member(grpid, userid)
+    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
+        return
+    else:
+        pass
+    if len(message.command) == 1:
+        return await message.reply("<b>Give me a Channel link along with this command\n\nCommand Usage: /set_channel your channel link</b>")
+    elif len(message.command) == 2:
+        reply = await message.reply_text("<b>Please Wait...</b>")
+        channel = message.command[1]
+        await save_group_settings(grpid, 'channel', channel)
+        await reply.edit_text(f"<b>Successfully Added Channel\n\nHere is your channel link for your group {title} - <code>{channel}</code></b>")
+    else:
+        return await message.reply("<b>You entered Incorrect Format\n\nFormat: /set_channel your channel link</b>")
+
+@Client.on_message(filters.command('get_channel'))
+async def get_channel_link(client, message):
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+    chat_type = message.chat.type
+
+    if chat_type == enums.ChatType.PRIVATE:
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                return
+        else:
+            await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
+
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grp_id = message.chat.id
+        title = message.chat.title
+
+    else:
+        return
+
+    st = await client.get_chat_member(grp_id, userid)
+    if (
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and str(userid) not in ADMINS
+    ):
+        return
+
+    settings = await get_settings(grp_id)
+    channel = settings["channel"]
+    await message.reply_text(f"<b>Channel for {title}\n\nYour Channel Link :- {channel}</b>")
+
+@Client.on_message(filters.command("set_group"))
+async def set_group(bot, message):
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        return await message.reply_text("This Command Work Only in group\n\nTry it in your own group")
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grpid = message.chat.id
+        title = message.chat.title
+    else:
+        return
+    userid = message.from_user.id
+    user = await bot.get_chat_member(grpid, userid)
+    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
+        return
+    else:
+        pass
+    if len(message.command) == 1:
+        return await message.reply("<b>Give me a group link along with this command\n\nCommand Usage: /set_group your group link</b>")
+    elif len(message.command) == 2:
+        reply = await message.reply_text("<b>Please Wait...</b>")
+        group = message.command[1]
+        await save_group_settings(grpid, 'group', group)
+        await reply.edit_text(f"<b>Successfully Added group\n\nHere is your group link for your group {title} - <code>{group}</code></b>")
+    else:
+        return await message.reply("<b>You entered Incorrect Format\n\nFormat: /set_group your group link</b>")
+
+@Client.on_message(filters.command('get_group'))
+async def get_group_link(client, message):
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+    chat_type = message.chat.type
+
+    if chat_type == enums.ChatType.PRIVATE:
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                return
+        else:
+            await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
+
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grp_id = message.chat.id
+        title = message.chat.title
+
+    else:
+        return
+
+    st = await client.get_chat_member(grp_id, userid)
+    if (
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and str(userid) not in ADMINS
+    ):
+        return
+
+    settings = await get_settings(grp_id)
+    group = settings["group"]
+    await message.reply_text(f"<b>group for {title}\n\nYour group Link :- {group}</b>")
+
+@Client.on_message(filters.command("set_rules"))
+async def set_rules(bot, message):
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        return await message.reply_text("This Command Work Only in group\n\nTry it in your own group")
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grpid = message.chat.id
+        title = message.chat.title
+    else:
+        return
+    userid = message.from_user.id
+    user = await bot.get_chat_member(grpid, userid)
+    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
+        return
+    else:
+        pass
+    if len(message.command) == 1:
+        return await message.reply("<b>Give me a rules link along with this command\n\nCommand Usage: /set_rules your rules link</b>")
+    elif len(message.command) == 2:
+        reply = await message.reply_text("<b>Please Wait...</b>")
+        rules = message.command[1]
+        await save_group_settings(grpid, 'rules', rules)
+        await reply.edit_text(f"<b>Successfully Added rules\n\nHere is your rules link for your group {title} - <code>{rules}</code></b>")
+    else:
+        return await message.reply("<b>You entered Incorrect Format\n\nFormat: /set_rules your rules link</b>")
+
+@Client.on_message(filters.command('get_rules'))
+async def get_rules_link(client, message):
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+    chat_type = message.chat.type
+
+    if chat_type == enums.ChatType.PRIVATE:
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                return
+        else:
+            await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
+
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grp_id = message.chat.id
+        title = message.chat.title
+
+    else:
+        return
+
+    st = await client.get_chat_member(grp_id, userid)
+    if (
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and str(userid) not in ADMINS
+    ):
+        return
+
+    settings = await get_settings(grp_id)
+    rules = settings["rules"]
+    await message.reply_text(f"<b>rules for {title}\n\nYour rules Link :- {rules}</b>")
+
+@Client.on_message(filters.command("set_share"))
+async def set_share(bot, message):
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        return await message.reply_text("This Command Work Only in group\n\nTry it in your own group")
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grpid = message.chat.id
+        title = message.chat.title
+    else:
+        return
+    userid = message.from_user.id
+    user = await bot.get_chat_member(grpid, userid)
+    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
+        return
+    else:
+        pass
+    if len(message.command) == 1:
+        return await message.reply("<b>Give me a share link along with this command\n\nCommand Usage: /set_share your share link</b>")
+    elif len(message.command) == 2:
+        reply = await message.reply_text("<b>Please Wait...</b>")
+        share = message.command[1]
+        await save_group_settings(grpid, 'share', share)
+        await reply.edit_text(f"<b>Successfully Added share\n\nHere is your share link for your group {title} - <code>{share}</code></b>")
+    else:
+        return await message.reply("<b>You entered Incorrect Format\n\nFormat: /set_share your share link</b>")
+
+@Client.on_message(filters.command('get_share'))
+async def get_share_link(client, message):
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+    chat_type = message.chat.type
+
+    if chat_type == enums.ChatType.PRIVATE:
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                return
+        else:
+            await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
+
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grp_id = message.chat.id
+        title = message.chat.title
+
+    else:
+        return
+
+    st = await client.get_chat_member(grp_id, userid)
+    if (
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and str(userid) not in ADMINS
+    ):
+        return
+
+    settings = await get_settings(grp_id)
+    share = settings["share"]
+    await message.reply_text(f"<b>share for {title}\n\nYour share Link :- {share}</b>")
+
+@Client.on_message(filters.command("set_admin"))
+async def set_admin(bot, message):
+    chat_type = message.chat.type
+    if chat_type == enums.ChatType.PRIVATE:
+        return await message.reply_text("This Command Work Only in group\n\nTry it in your own group")
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grpid = message.chat.id
+        title = message.chat.title
+    else:
+        return
+    userid = message.from_user.id
+    user = await bot.get_chat_member(grpid, userid)
+    if user.status != enums.ChatMemberStatus.ADMINISTRATOR and user.status != enums.ChatMemberStatus.OWNER and str(userid) not in ADMINS:
+        return
+    else:
+        pass
+    if len(message.command) == 1:
+        return await message.reply("<b>Give me a admin link along with this command\n\nCommand Usage: /set_admin your admin link</b>")
+    elif len(message.command) == 2:
+        reply = await message.reply_text("<b>Please Wait...</b>")
+        admin = message.command[1]
+        await save_group_settings(grpid, 'admin', admin)
+        await reply.edit_text(f"<b>Successfully Added admin\n\nHere is your admin link for your group {title} - <code>{admin}</code></b>")
+    else:
+        return await message.reply("<b>You entered Incorrect Format\n\nFormat: /set_admin your admin link</b>")
+
+@Client.on_message(filters.command('get_admin'))
+async def get_admin_link(client, message):
+    userid = message.from_user.id if message.from_user else None
+    if not userid:
+        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+    chat_type = message.chat.type
+
+    if chat_type == enums.ChatType.PRIVATE:
+        grpid = await active_connection(str(userid))
+        if grpid is not None:
+            grp_id = grpid
+            try:
+                chat = await client.get_chat(grpid)
+                title = chat.title
+            except:
+                await message.reply_text("Make sure I'm present in your group!!", quote=True)
+                return
+        else:
+            await message.reply_text("I'm not connected to any groups!", quote=True)
+            return
+
+    elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
+        grp_id = message.chat.id
+        title = message.chat.title
+
+    else:
+        return
+
+    st = await client.get_chat_member(grp_id, userid)
+    if (
+            st.status != enums.ChatMemberStatus.ADMINISTRATOR
+            and st.status != enums.ChatMemberStatus.OWNER
+            and str(userid) not in ADMINS
+    ):
+        return
+
+    settings = await get_settings(grp_id)
+    admin = settings["admin"]
+    await message.reply_text(f"<b>admin for {title}\n\nYour admin Link :- {admin}</b>")
+
 static_data_filter = filters.create(lambda _, __, query: query.data == "onUnMuteRequest")
 @Client.on_callback_query(static_data_filter)
 async def _onUnMuteRequest(client, cb):
