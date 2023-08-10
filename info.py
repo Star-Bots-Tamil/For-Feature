@@ -107,9 +107,9 @@ IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
    # Only Config Links 
 CHANNEL = (environ.get('CHANNEL', 'https://t.me/Star_Moviess_Tamil'))
 GROUP = (environ.get('GROUP', 'https://t.me/+va6nunx_ddQ4ZWNl'))
-RULES = (environ.get('RULES', 'https://telegram.me/Star_Moviess_Bot?start=files_BAADBQAD3QwAAitd-Fb0taAQAAH02-QWBA'))
+RULES = (environ.get('RULES', 'http://t.me/MissRose_bot?start=rules_-1001650088903'))
 SHARE = (environ.get('SHARE', 'https://t.me/share/url?url=I%27m%20an%20UK%20Movies%20Official%20Auto%20Filter%20Bot%20%28Movie%20Search%20Bot%29.%20Just%20Search%20Then%20You%20Can%20Get%20Files..%E2%9D%A4%EF%B8%8F%0A%0A%F0%9F%93%A2%20Join%20Our%20Update%20Channel%20%3A-%0A%40UK_Movies_Zone_Updates%0A%0A%F0%9F%94%A5%20Powered%20By%20%3A-%0A%40UK_Studios_Official%0A%40HMTD_Links%0A%20%20%0A%F0%9F%91%87%20Join%20%3A-%0A%20https%3A//t.me/UK_Movies_Zone'))
-ADMIN = (environ.get('ADMIN', 'https://telegram.me/Star_Moviess_Bot?start=files_BAADBQAD3QwAAitd-Fb0taAQAAH02-QWBA'))
+ADMIN = int(getenv('ADMIN', '1391556668'))
 
    # Custom Caption Under Button #
 CAPTION_BUTTON = "🔥 Join Our Channel 🔥"
