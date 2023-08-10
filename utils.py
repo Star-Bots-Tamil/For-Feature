@@ -515,6 +515,46 @@ async def get_tutorial(chat_id):
         TUTORIAL_URL = TUTORIAL
     return TUTORIAL_URL
 
+async def get_channel(chat_id):
+    settings = await get_settings(chat_id) #fetching settings for group
+    if 'channel' in settings.keys():
+        CHANNEL_URL = settings['channel']
+    else:
+        CHANNEL_URL = CHANNEL
+    return CHANNEL_URL
+
+async def get_group(chat_id):
+    settings = await get_settings(chat_id) #fetching settings for group
+    if 'group' in settings.keys():
+        GROUP_URL = settings['group']
+    else:
+        GROUP_URL = GROUP
+    return GROUP_URL
+
+async def get_rules(chat_id):
+    settings = await get_settings(chat_id) #fetching settings for group
+    if 'rules' in settings.keys():
+        RULES_URL = settings['rules']
+    else:
+        RULES_URL = RULES
+    return RULES_URL
+
+async def get_share(chat_id):
+    settings = await get_settings(chat_id) #fetching settings for group
+    if 'share' in settings.keys():
+        SHARE_URL = settings['share']
+    else:
+        SHARE_URL = SHARE
+    return SHARE_URL
+
+async def get_admin(chat_id):
+    settings = await get_settings(chat_id) #fetching settings for group
+    if 'admin' in settings.keys():
+        ADMIN_URL = settings['admin']
+    else:
+        ADMIN_URL = ADMIN
+    return ADMIN_URL
+
 async def get_verify_shorted_link(num, link):
     if int(num) == 1:
         API = SHORTLINK_API
