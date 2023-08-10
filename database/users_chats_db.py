@@ -1,5 +1,5 @@
 import motor.motor_asyncio
-from info import DATABASE_NAME, DATABASE_URI, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, P_TTI_SHOW_OFF, SINGLE_BUTTON, SPELL_CHECK_REPLY, PROTECT_CONTENT, SELF_DELETE, MAX_BTN, CUSTOM_FILE_CAPTION, WELCOME_TEXT, AUTO_FFILTER, DOWNLOAD_TEXT_URL, SHORTLINK_API, SHORTLINK_URL, IS_SHORTLINK
+from info import DATABASE_NAME, DATABASE_URI, IMDB, IMDB_TEMPLATE, MELCOW_NEW_USERS, P_TTI_SHOW_OFF, SINGLE_BUTTON, SPELL_CHECK_REPLY, PROTECT_CONTENT, SELF_DELETE, MAX_BTN, CUSTOM_FILE_CAPTION, WELCOME_TEXT, AUTO_FFILTER, DOWNLOAD_TEXT_URL, SHORTLINK_API, SHORTLINK_URL, IS_SHORTLINK, ADMIN, SHARE, RULES, GROUP, CHANNEL
 from Script import SPELL_TEXT
 class Database:
     
@@ -136,11 +136,17 @@ class Database:
             'welcome': MELCOW_NEW_USERS,
             'welcome_text': WELCOME_TEXT,
             'tutorial' : DOWNLOAD_TEXT_URL,
+            'is_tutorial' : IS_TUTORIAL,
             'max_btn': MAX_BTN,
             'auto_delete': SELF_DELETE,
             'auto_ffilter': AUTO_FFILTER,
             'template': IMDB_TEMPLATE,
             'caption': CUSTOM_FILE_CAPTION,
+            'channel' : CHANNEL,
+            'group' : GROUP,
+            'rules' : RULES,
+            'share' : SHARE,
+            'admin' : ADMIN,
             'shortlink': SHORTLINK_URL,
             'shortlink_api': SHORTLINK_API,
             'is_shortlink': IS_SHORTLINK
