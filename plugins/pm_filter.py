@@ -251,7 +251,14 @@ async def next_page(bot, query):
         InlineKeyboardButton("⚡ Cʜᴇᴄᴋ Bᴏᴛ PM ⚡", url=f"https://t.me/{temp.U_NAME}")
     ])
     btn.insert(0, [
-        InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME, url=await get_tutorial(query.message.chat.id))
+        InlineKeyboardButton('😎 Group', url=await get_group(query.message.chat.id)),
+        InlineKeyboardButton('☺️ Share', url=await get_share(query.message.chat.id)),
+        InlineKeyboardButton('📢 Channel', url=await get_channel(query.message.chat.id))
+        ]
+              )
+    btn.insert(0, [
+        InlineKeyboardButton(text=DOWNLOAD_TEXT_NAME, url=await get_tutorial(query.message.chat.id)),
+        InlineKeyboardButton(🤵🏻 Admin, url=await get_admin(query.message.chat.id))
     ])    
     try:
         await query.edit_message_reply_markup(
