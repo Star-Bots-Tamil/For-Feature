@@ -5,7 +5,7 @@ from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong, PeerIdInv
 from info import ADMINS, LOG_CHANNEL, SUPPORT_CHAT, MELCOW_NEW_USERS
 from database.users_chats_db import db
 from database.ia_filterdb import Media
-from utils import get_size, temp, get_settings
+from utils import get_size, temp, get_settings, get_rules, get_channel
 from Script import script
 from pyrogram.errors import ChatAdminRequired
 
@@ -39,7 +39,7 @@ async def save_group(bot, message):
             return
         buttons = [[
             InlineKeyboardButton('How to Use Me ❓', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            InlineKeyboardButton('🎥 Movie Updates', url='https://t.me/Star_Moviess_Tamil')
+            InlineKeyboardButton('🎥 Movie Updates', url=await get_channel(message.chat.id))
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
         await message.reply_text(
@@ -61,9 +61,9 @@ async def save_group(bot, message):
                                                  caption=welcome_text.format(first_name = message.from_user.first_name, last_name = message.from_user.last_name, username = f"@{message.from_user.username}" or None, title = message.chat.title, mention = new_members),
                                                  reply_markup=InlineKeyboardMarkup(
                                                                          [[
-                                                                           InlineKeyboardButton('🚫 Group Rules 🚫', url="http://t.me/MissRose_bot?start=rules_-1001650088903")
+                                                                           InlineKeyboardButton('🚫 Group Rules 🚫', url=await get_rules(message.chat.id))
                                                                         ],[    
-                                                                           InlineKeyboardButton('🎥 Movie Updates', url="https://t.me/Star_Moviess_Tamil")
+                                                                           InlineKeyboardButton('🎥 Movie Updates', url=await get_channel(message.chat.id))
                                                                         ],[
                                                                            InlineKeyboardButton("🤖 Bot Updates", url="https://t.me/Star_Bots_Tamil")
                                                                          ]]
