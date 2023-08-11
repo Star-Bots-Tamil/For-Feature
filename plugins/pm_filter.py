@@ -997,10 +997,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                             reply_markup=InlineKeyboardMarkup(
                                 [
                                 [
-                                InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=GRP_LNK),
-                                InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
+                                InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=await get_group(grp_id)),
+                                InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=await get_channel(grp_id))
                             ],[
-                                InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="t.me/creatorbeatz")
+                                InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url=await get_admin(grp_id))
                                 ]
                                 ]
                             )
@@ -1075,10 +1075,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                  InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=GRP_LNK),
-                  InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=CHNL_LNK)
+                  InlineKeyboardButton('Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ', url=await get_group(grp_id)),
+                  InlineKeyboardButton('Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ', url=await get_channel(grp_id))
                ],[
-                  InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url="t.me/TG_Karthik")
+                  InlineKeyboardButton("Bᴏᴛ Oᴡɴᴇʀ", url=await get_admin(grp_id))
                  ]
                 ]
             )
