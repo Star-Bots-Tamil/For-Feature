@@ -277,10 +277,10 @@ async def start(client, message):
             if f_caption is None:
                 f_caption = f"{title}"
             try:
-                await client.send_cached_media(
+                feck=await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
-                    caption=f_caption,
+                    caption=f_caption+f"\n\n<b>Note :- This File Will be Deleted in {round(FILE_DELETE_TIMER/60)} Minutes. So Forward to Your Saved Messages.</b>",
                     protect_content=msg.get('protect', False),
                     reply_markup=InlineKeyboardMarkup(
                         [
@@ -293,13 +293,15 @@ async def start(client, message):
                         ]
                     )
                 )
+                await asyncio.sleep(FILE_DELETE_TIMER)
+                await feck.delete()
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 logger.warning(f"Floodwait of {e.x} sec.")
-                await client.send_cached_media(
+                feck=await client.send_cached_media(
                     chat_id=message.from_user.id,
                     file_id=msg.get("file_id"),
-                    caption=f_caption,
+                    caption=f_caption+f"\n\n<b>Note :- This File Will be Deleted in {round(FILE_DELETE_TIMER/60)} Minutes. So Forward to Your Saved Messages.</b>",
                     protect_content=msg.get('protect', False),
                     reply_markup=InlineKeyboardMarkup(
                         [
@@ -312,6 +314,8 @@ async def start(client, message):
                         ]
                     )
                 )
+                await asyncio.sleep(FILE_DELETE_TIMER)
+                await feck.delete()
             except Exception as e:
                 logger.warning(e, exc_info=True)
                 continue
@@ -478,10 +482,10 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(btn)
         )
         return
-    await client.send_cached_media(
+    feck=await client.send_cached_media(
         chat_id=message.from_user.id,
         file_id=file_id,
-        caption=f_caption,
+        caption=f_caption+f"\n\n<b>Note :- This File Will be Deleted in {round(FILE_DELETE_TIMER/60)} Minutes. So Forward to Your Saved Messages.</b>",
         protect_content=True if pre == 'filep' else False,
         reply_markup=InlineKeyboardMarkup(
             [
@@ -494,6 +498,8 @@ async def start(client, message):
             ]
         )
     )
+    await asyncio.sleep(FILE_DELETE_TIMER)
+    await feck.delete()
                 
 @Client.on_message(filters.command('settings'))
 async def settings(client, message):
