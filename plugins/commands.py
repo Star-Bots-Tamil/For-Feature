@@ -1720,7 +1720,7 @@ async def config(client, message):
       input_str = input_str.replace("@", "")
       if input_str.lower() in ("off", "no", "disable"):
         sql.disapprove(chat_id)
-        await message.reply_text("❌ **Force Subscribe is Disabled Successfully.**")
+        await message.reply_text("❌ **Force Subscribe is Disabled Successfully.\nYou Can Set Force Subscribers to /set_fsub {channel id} or {channel link}**")
       elif input_str.lower() in ('clear'):
         sent_message = await message.reply_text('**Unmuting all members who are muted by me...**')
         try:
