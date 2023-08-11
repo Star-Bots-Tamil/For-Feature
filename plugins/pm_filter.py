@@ -989,10 +989,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                         )
                         return await query.answer("Hᴇʏ, Yᴏᴜ ʜᴀᴠᴇ ɴᴏᴛ ᴠᴇʀɪғɪᴇᴅ ᴛᴏᴅᴀʏ. Yᴏᴜ ʜᴀᴠᴇ ᴛᴏ ᴠᴇʀɪғʏ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ. Cʜᴇᴄᴋ ᴍʏ PM ᴛᴏ ᴠᴇʀɪғʏ ᴀɴᴅ ɢᴇᴛ ғɪʟᴇs !", show_alert=True)
                     else:
-                        await client.send_cached_media(
+                        feck=await client.send_cached_media(
                             chat_id=query.from_user.id,
                             file_id=file_id,
-                            caption=f_caption,
+                            caption=f_caption+f"\n\n<b>Note :- This File Will be Deleted in {round(FILE_DELETE_TIMER/60)} Minutes. So Forward to Your Saved Messages.</b>",
                             protect_content=True if ident == "filep" else False,
                             reply_markup=InlineKeyboardMarkup(
                                 [
@@ -1014,6 +1014,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
         except Exception as e:
             await query.answer(url=f"https://t.me/{temp.U_NAME}?start={ident}_{file_id}")
+            await asyncio.sleep(FILE_DELETE_TIMER)
+            await feck.delete()
     elif query.data.startswith("checksub"):
         if (AUTH_CHANNEL or REQ_CHANNEL) and not await is_subscribed(client, query):
             await query.answer("Jᴏɪɴ ᴏᴜʀ Bᴀᴄᴋ-ᴜᴘ ᴄʜᴀɴɴᴇʟ ᴍᴀʜɴ! 😒", show_alert=True)
@@ -1065,10 +1067,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_markup=InlineKeyboardMarkup(btn)
             )
             return
-        await client.send_cached_media(
+        feck=await client.send_cached_media(
             chat_id=query.from_user.id,
             file_id=file_id,
-            caption=f_caption,
+            caption=f_caption+f"\n\n<b>Note :- This File Will be Deleted in {round(FILE_DELETE_TIMER/60)} Minutes. So Forward to Your Saved Messages.</b>",
             protect_content=True if ident == 'checksubp' else False,
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -1081,6 +1083,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 ]
             )
         )
+        await asyncio.sleep(FILE_DELETE_TIMER)
+        await feck.delete()
     elif query.data == "pages":
         await query.answer()
 
