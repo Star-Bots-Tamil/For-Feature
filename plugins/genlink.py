@@ -20,7 +20,7 @@ async def allowed(_, __, message):
         return True
     return False
 
-@Client.on_message(filters.command(['link', 'plink']) & filters.create(allowed))
+@Client.on_message(filters.command(['link', 'protect_link']) & filters.create(allowed))
 async def gen_link_s(bot, message):
     replied = message.reply_to_message
     if not replied:
@@ -37,7 +37,7 @@ async def gen_link_s(bot, message):
     await message.reply(f"<b>⪼ Here is Your File Link :\nhttps://telegram.me/{temp.U_NAME}?start={outstr}</b>")
     
     
-@Client.on_message(filters.command(['batch', 'pbatch']) & filters.create(allowed))
+@Client.on_message(filters.command(['batch', 'protect_batch']) & filters.create(allowed))
 async def gen_link_batch(bot, message):
     if " " not in message.text:
         return await message.reply("**Use Correct Format.**")
