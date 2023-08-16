@@ -727,6 +727,7 @@ async def advantage_spoll_choker(bot, query):
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.data == "close_data":
         await query.message.delete()
+        await query.answer("Closed Current Process...!")
     elif query.data == "gfiltersdeleteallconfirm":
         await del_allg(query.message, 'gfilters')
         await query.answer("Dᴏɴᴇ !")
@@ -1505,10 +1506,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('Ping', callback_data='pings'),
             InlineKeyboardButton('Short Link', callback_data='short')
             ],[
-            InlineKeyboardButton('Mute', callback_data='restric'),
-            InlineKeyboardButton('Kick', callback_data='zombies'),
-            InlineKeyboardButton('Pin', callback_data='pin')
-            ],[
             InlineKeyboardButton('Password', callback_data='password'),
             InlineKeyboardButton("Paste", callback_data='pastes'),
             InlineKeyboardButton('YT-DL', callback_data='ytdl')
@@ -1520,6 +1517,40 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.HELP_TXT.format(query.from_user.mention), enums.ParseMode.HTML),
+            reply_markup=reply_markup,
+            #parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "custom":
+        buttons = [[
+            InlineKeyboardButton('💁🏻 Devloper', user_id=OWNER_ID),          
+            InlineKeyboardButton('ℹ️ Source Code', callback_data='source')
+            ],[
+            InlineKeyboardButton('🏠 Home 🏠', callback_data='start'),
+            InlineKeyboardButton('😎 Help', callback_data='help')
+         ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.edit_message_media(
+            query.message.chat.id, 
+            query.message.id, 
+            InputMediaPhoto(random.choice(PICS), script.ABOUT_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
+            reply_markup=reply_markup,
+            #parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "group_manege":
+        buttons = [[
+            InlineKeyboardButton('Mute', callback_data='restric'),
+            InlineKeyboardButton('Kick', callback_data='zombies'),
+            InlineKeyboardButton('Pin', callback_data='pin')
+            ],[
+            InlineKeyboardButton('💁🏻 Devloper', user_id=OWNER_ID),
+            InlineKeyboardButton('🏠 Home 🏠', callback_data='start'),
+            InlineKeyboardButton('😎 Help', callback_data='help')
+         ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.edit_message_media(
+            query.message.chat.id, 
+            query.message.id, 
+            InputMediaPhoto(random.choice(PICS), script.GROUP_MANEGE_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
             reply_markup=reply_markup,
             #parse_mode=enums.ParseMode.HTML
         )
