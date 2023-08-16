@@ -48,7 +48,10 @@ class temp(object):
     SETTINGS = {}
     VERIFY = {}
     SEND_ALL_TEMP = {}
-    KEYWORD = {}    
+    KEYWORD = {}
+    FILES = {}
+    USERS_CANCEL = False
+    GROUPS_CANCEL = False
     
 async def is_subscribed(bot, query=None, userid=None):
     
