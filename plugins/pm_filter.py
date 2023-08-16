@@ -1486,8 +1486,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         buttons = [[
             InlineKeyboardButton('📊 Status', callback_data='stats'),            
             ],[
-            InlineKeyboardButton('Manuel Filter', callback_data='manuelfilter'),
-            InlineKeyboardButton('Auto Filter', callback_data='autofilter'),
+            InlineKeyboardButton('Custom to Your Bot 🤖', callback_data='stats'),            
+            ],[
+            InlineKeyboardButton('Filters', callback_data='filters'),
+            InlineKeyboardButton('Group Manage', callback_data='group_manege'),
             InlineKeyboardButton('Connections', callback_data='coct')
             ],[                       
             InlineKeyboardButton('IMDB', callback_data='template'),
@@ -1510,6 +1512,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton("Paste", callback_data='pastes'),
             InlineKeyboardButton('YT-DL', callback_data='ytdl')
             ],[
+            InlineKeyboardButton('Country Info', callback_data='country'),
+            InlineKeyboardButton('Translate', callback_data='translate'),
+            InlineKeyboardButton('File Store', callback_data='store_file')
+            ],[
             InlineKeyboardButton('🏠 Home 🏠', callback_data='start')           
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -1523,7 +1529,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data == "custom":
         buttons = [[
             InlineKeyboardButton('💁🏻 Devloper', user_id=OWNER_ID),          
-            InlineKeyboardButton('ℹ️ Source Code', callback_data='source')
+            InlineKeyboardButton('URL Shortener', callback_data='source')
             ],[
             InlineKeyboardButton('🏠 Home 🏠', callback_data='start'),
             InlineKeyboardButton('😎 Help', callback_data='help')
@@ -1532,7 +1538,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await query.edit_message_media(
             query.message.chat.id, 
             query.message.id, 
-            InputMediaPhoto(random.choice(PICS), script.ABOUT_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
+            InputMediaPhoto(random.choice(PICS), script.CUSTOM_YOUR_BOT_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
             reply_markup=reply_markup,
             #parse_mode=enums.ParseMode.HTML
         )
@@ -1553,6 +1559,39 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InputMediaPhoto(random.choice(PICS), script.GROUP_MANEGE_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
             reply_markup=reply_markup,
             #parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "translate":
+        buttons = [[
+            InlineKeyboardButton('⬅️ Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.edit_message_media(
+            query.message.chat.id, 
+            query.message.id, 
+            InputMediaPhoto(random.choice(PICS), script.TRANSLATE_TXT, enums.ParseMode.HTML),
+            reply_markup=reply_markup,            
+        )
+    elif query.data == "country":
+        buttons = [[
+            InlineKeyboardButton('⬅️ Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.edit_message_media(
+            query.message.chat.id, 
+            query.message.id, 
+            InputMediaPhoto(random.choice(PICS), script.COUNTRY_TXT, enums.ParseMode.HTML),
+            reply_markup=reply_markup,            
+        )
+    elif query.data == "url_shortener":
+        buttons = [[
+            InlineKeyboardButton('⬅️ Back', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.edit_message_media(
+            query.message.chat.id, 
+            query.message.id, 
+            InputMediaPhoto(random.choice(PICS), script.URL_SHORTENER_TXT, enums.ParseMode.HTML),
+            reply_markup=reply_markup,            
         )
     elif query.data == "about":
         buttons = [[
