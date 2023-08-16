@@ -3,7 +3,7 @@ import datetime
 import time
 from database.users_chats_db import db
 from info import ADMINS
-from utils import broadcast_messages
+from utils import broadcast_messages, broadcast_messages, groups_broadcast_messages, temp
 import asyncio
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
@@ -19,8 +19,18 @@ BROADCAST_REPLY_ERROR = """<b>Use /broadcast Command as a Reply to Any Message.<
 
 #=====================================================================================
 
+@Client.on_callback_query(filters.regex(r'^broadcast_cancel'))
+async def broadcast_cancel(bot, query):
+    _, ident = query.data.split("#")
+    if ident == 'users':
+        await query.message.edit("**Trying to Cancel Users Broadcasting...**")
+        temp.USERS_CANCEL = True
+    elif ident == 'groups':
+        temp.GROUPS_CANCEL = True
+        await query.message.edit("**Trying to Cancel Groups Broadcasting...**")
+
 @Client.on_message(filters.command("broadcast") & filters.user(ADMINS) & filters.reply)
-async def verupikkals(bot, message):
+async def broadcast(bot, message):
     users = await db.get_all_users()
     b_msg = message.reply_to_message
     sts = await message.reply_text(
@@ -199,8 +209,6 @@ async def clear_junk(user_id, message):
         return False, "Error"
     except Exception as e:
         return False, "Error"
-
-
 
 async def broadcast_messages(user_id, message):
     try:
