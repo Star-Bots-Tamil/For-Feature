@@ -58,11 +58,12 @@ async def broadcast(bot, message):
         done += 1
         await asyncio.sleep(2)
         if not done % 20:
-            await sts.edit(f"Broadcast in progress:\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}")    
+            btn = [[
+                InlineKeyboardButton('🚫 Cancel', callback_data=f'broadcast_cancel#users')
+            ]]
+            await sts.edit(f"Users Broadcast in Progress :\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}", reply_markup=InlineKeyboardMarkup(btn))    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
-    await sts.edit(f"<b>Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}</b>")
-
-
+    await sts.edit(f"<b>Users Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Users {total_users}\nCompleted: {done} / {total_users}\nSuccess: {success}\nBlocked: {blocked}\nDeleted: {deleted}</b>")
    
 @Client.on_message(filters.command("junk_users") & filters.user(ADMINS))
 async def remove_junkuser__db(bot, message):
@@ -95,7 +96,7 @@ async def remove_junkuser__db(bot, message):
 async def broadcast_group(bot, message):
     groups = await db.get_all_chats()
     b_msg = message.reply_to_message
-    sts = await message.reply_text(text='Broadcasting your messages To Groups...')
+    sts = await message.reply_text(text='Broadcasting Your Messages To Groups...')
     start_time = time.time()
     total_groups = await db.total_chat_count()
     done = 0
@@ -117,18 +118,20 @@ async def broadcast_group(bot, message):
                     print(f"{e} > {group['id']}")  
         done += 1
         if not done % 20:
-            await sts.edit(f"Broadcast in progress:\n\nTotal Groups {total_groups}\nCompleted: {done} / {total_groups}\nSuccess: {success}\nDeleted: {deleted}")    
+            btn = [[
+                InlineKeyboardButton('🚫 Cancel', callback_data=f'broadcast_cancel#groups')
+            ]]
+            await sts.edit(f"Group Broadcast in Progress:\n\nTotal Groups {total_groups}\nCompleted: {done} / {total_groups}\nSuccess: {success}\nDeleted: {deleted}", reply_markup=InlineKeyboardMarkup(btn))    
     time_taken = datetime.timedelta(seconds=int(time.time()-start_time))
     await sts.delete()
     try:
-        await message.reply_text(f"Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Groups {total_groups}\nCompleted: {done} / {total_groups}\nSuccess: {success}\nDeleted: {deleted}\n\nFiled Reson:- {failed}")
+        await message.reply_text(f"Group Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Groups {total_groups}\nCompleted: {done} / {total_groups}\nSuccess: {success}\nDeleted: {deleted}\n\nFiled Reson:- {failed}")
     except MessageTooLong:
         with open('reason.txt', 'w+') as outfile:
             outfile.write(failed)
-        await message.reply_document('reason.txt', caption=f"Completed:\nCompleted in {time_taken} seconds.\n\nTotal Groups {total_groups}\nCompleted: {done} / {total_groups}\nSuccess: {success}\nDeleted: {deleted}")
+        await message.reply_document('reason.txt', caption=f"Group Broadcast Completed:\nCompleted in {time_taken} seconds.\n\nTotal Groups {total_groups}\nCompleted: {done} / {total_groups}\nSuccess: {success}\nDeleted: {deleted}")
         os.remove("reason.txt")
-
-      
+        
 @Client.on_message(filters.command("junk_chats") & filters.user(ADMINS))
 async def junk_clear_group(bot, message):
     groups = await db.get_all_chats()
