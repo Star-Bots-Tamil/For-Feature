@@ -167,7 +167,11 @@ async def junk_clear_group(bot, message):
 
 async def broadcast_messages_group(chat_id, message):
     try:
-        await message.copy(chat_id=chat_id)
+        star= await message.copy(chat_id=chat_id)
+        try:
+            await star.pin()
+        except:
+            pass
         return True, "Succes", 'mm'
     except FloodWait as e:
         await asyncio.sleep(e.x)
