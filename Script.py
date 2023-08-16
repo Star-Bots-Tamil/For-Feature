@@ -162,6 +162,7 @@ YTDL Features  ✨
 <b>᚛› From Bot ⪼ <a href=https://t.me/Star_Moviess_Bot><b>Star Movies Bot</a></b>
 """
 
+    GROUP_MANEGE_TXT = """Group Manage Text"""
 
     FILE_TXT = """➤ 𝐇𝐞𝐥𝐩: 𝐅𝐢𝐥𝐞 𝐒𝐭𝐨𝐫𝐞 𝐌𝐨𝐝𝐮𝐥𝐞../
 
