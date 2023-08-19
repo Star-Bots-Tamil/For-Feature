@@ -34,7 +34,6 @@ from telegraph import upload_file
 from database.gtrans_mdb import find, find_one
 from utils import get_file_id
 from plugins.keyboard import ikb
-from plugins.pastebin import paste, eor
 from pyrogram.file_id import FileId
 from Script import script
 from pyrogram import filters
