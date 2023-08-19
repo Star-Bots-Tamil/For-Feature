@@ -1523,7 +1523,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.HELP_TXT.format(query.from_user.mention), enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "custom":
@@ -1539,7 +1539,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.CUSTOM_YOUR_BOT_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "group_manege":
@@ -1569,7 +1569,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.TRANSLATE_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,            
+            reply_markup=reply_markup         
         )
     elif query.data == "country":
         buttons = [[
@@ -1580,7 +1580,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.COUNTRY_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,            
+            reply_markup=reply_markup            
         )
     elif query.data == "url_shortener":
         buttons = [[
@@ -1591,7 +1591,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.URL_SHORTENER_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,            
+            reply_markup=reply_markup            
         )
     elif query.data == "about":
         buttons = [[
@@ -1606,7 +1606,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.ABOUT_TXT.format(temp.B_NAME), enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "source":
@@ -1620,7 +1620,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.SOURCE_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "restric":
@@ -1632,7 +1632,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.RESTRIC_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,            
+            reply_markup=reply_markup           
         )
     elif query.data == "template":
         buttons = [[
@@ -1643,7 +1643,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.TEMPLATE_TXT.format(temp.B_NAME), enums.ParseMode.HTML),            
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         ) 
     elif query.data == "ytdl":
         buttons = [[
@@ -1654,7 +1654,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.YTDL, enums.ParseMode.HTML),            
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )  
     elif query.data == "sharetxt":
         buttons = [[
@@ -1665,7 +1665,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.SHARE_TXT, enums.ParseMode.HTML),           
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )      
     elif query.data == "zombies":
         buttons = [[
@@ -1676,7 +1676,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.ZOMBIES_TXT, enums.ParseMode.HTML),           
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )    
     elif query.data == "pin":
         buttons = [[
@@ -1687,7 +1687,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.PIN_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "son":
         buttons = [[
@@ -1698,7 +1698,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.JSON_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "pastes":
         buttons = [[
@@ -1709,7 +1709,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.PASTE_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "pings":
         buttons = [[
@@ -1720,7 +1720,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.PINGS_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "ttss":
         buttons = [[
@@ -1731,7 +1731,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.TTS_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "purges":
         buttons = [[
@@ -1742,7 +1742,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.PURGE_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "graph":
         buttons = [[
@@ -1753,7 +1753,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.TELE_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     elif query.data == "password":
         buttons = [[
@@ -1764,7 +1764,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id,
             InputMediaPhoto(random.choice(PICS), script.PASSWORD_TXT, enums.ParseMode.HTML),           
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )      
     elif query.data == "stickerid":
         buttons = [[
@@ -1775,7 +1775,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.STICKERID_TXT, enums.ParseMode.HTML),           
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )    
     elif query.data == "short":
         buttons = [[
@@ -1786,7 +1786,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.SHORT_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )        
     elif query.data == "manuelfilter":
         buttons = [[
@@ -1798,7 +1798,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.MANUELFILTER_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "button":
@@ -1810,7 +1810,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.BUTTON_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "autofilter":
@@ -1822,7 +1822,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.AUTOFILTER_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "coct":
@@ -1834,7 +1834,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.CONNECTION_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "extra":
@@ -1847,7 +1847,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.EXTRAMOD_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
             #parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "admin":
@@ -1886,7 +1886,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.CARB_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )      
     elif query.data == "font":
         buttons = [[
@@ -1897,7 +1897,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.FOND_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )       
     elif query.data == "newdata":
         buttons = [[
@@ -1908,7 +1908,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             query.message.chat.id, 
             query.message.id, 
             InputMediaPhoto(random.choice(PICS), script.FILE_TXT, enums.ParseMode.HTML),
-            reply_markup=reply_markup,
+            reply_markup=reply_markup
         )
     
     elif query.data == "store_file":
