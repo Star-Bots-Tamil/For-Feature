@@ -12,7 +12,7 @@ import aiohttp
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
-NEKOBIN_URL = "https://nekobin.com/"
+neko_linker = "https://nekobin.com/"
 
 @Client.on_callback_query(
     filters.create(lambda _, __, query: query.data.startswith("webmi"))
@@ -33,14 +33,14 @@ async def __(c, m):
                     response = await resp.json()
                     key = response["result"]["key"]
                     file_ext = ".txt"
-                    neko = NEKOBIN_URL + key + file_ext
-                    neno_link = f"{NEKOBIN_URL}{key}{file_ext}"
-                    neko_link_raw = f"{NEKOBIN_URL}raw/{key}{file_ext}"
+                    neko = neko_linker + key + file_ext
+                    neno_link = f"{neko_linker}{key}{file_ext}"
+                    neko_link_raw = f"{neko_linker}raw/{key}{file_ext}"
                     await m.edit_message_reply_markup(
                         InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neko_link_raw)]])
                 )
                 else:
                     await m.edit_message_reply_markup(
-                        InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neno_link)]])
+                        InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neko_link)]])
                 )
                     
