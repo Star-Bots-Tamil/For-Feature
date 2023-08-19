@@ -23,7 +23,7 @@ async def __(c, m):
         await m.answer()
     except Exception:
         pass
-    with open("logs/userge.log", "r") as d_f:
+    with open("StarMoviesBot.log", "r") as d_f:
         text = d_f.read()
     async with aiohttp.ClientSession() as ses:
         async with ses.post(
