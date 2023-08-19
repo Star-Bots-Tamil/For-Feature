@@ -35,7 +35,6 @@ async def __(c, m):
                 file_ext = ".txt"
                 final_url = NEKOBIN_URL + key + file_ext
                 final_url_raw = f"{NEKOBIN_URL}raw/{key}{file_ext}"
-        logger.debug(final_url)
         await m.edit_message_reply_markup(
             InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=final_url)]])
 )
