@@ -33,13 +33,13 @@ async def __(c, m):
                     response = await resp.json()
                     key = response["result"]["key"]
                     file_ext = ".txt"
-                    final = NEKOBIN_URL + key + file_ext
+                    neko = NEKOBIN_URL + key + file_ext
                     neko_link = f"{NEKOBIN_URL}{key}{file_ext}"
-                    final_url_raw = f"{NEKOBIN_URL}raw/{key}{file_ext}"
+                    neko_link_raw = f"{NEKOBIN_URL}raw/{key}{file_ext}"
                     await m.edit_message_reply_markup(
                         InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neko_link)]])
                 )
                 else:
                     await m.edit_message_reply_markup(
-                        InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=final_url_raw)]])
+                        InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neko_link_raw)]])
                 )
