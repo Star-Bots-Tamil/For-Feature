@@ -43,5 +43,3 @@ async def __(c, m):
                     await m.edit_message_reply_markup(
                         InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=final_url_raw)]])
                 )
-                logger.debug(neko_link)
-        
