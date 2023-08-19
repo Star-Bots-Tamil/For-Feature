@@ -27,7 +27,7 @@ async def __(c, m):
         text = d_f.read()
     async with aiohttp.ClientSession() as ses:
         async with ses.post(
-            NEKOBIN_URL + "api/documents", json={"content": text}
+            neko_linker + "api/documents", json={"content": text}
         ) as resp:
                 if resp.status == 201:
                     response = await resp.json()
