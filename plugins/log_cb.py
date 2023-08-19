@@ -33,8 +33,10 @@ async def __(c, m):
                 response = await resp.json()
                 key = response["result"]["key"]
                 file_ext = ".txt"
-                final_url = NEKOBIN_URL + key + file_ext
+                final = NEKOBIN_URL + key + file_ext
+                final_url = f"{NEKOBIN_URL}{key}{file_ext}"
                 final_url_raw = f"{NEKOBIN_URL}raw/{key}{file_ext}"
+        logger.debug(final_url)
         await m.edit_message_reply_markup(
             InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=final_url)]])
 )
