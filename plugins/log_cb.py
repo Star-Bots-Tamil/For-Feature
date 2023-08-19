@@ -26,7 +26,7 @@ async def __(c, m):
         async with aiohttp.ClientSession() as nekoSession:
             payload = {"content": open(media_info, "r").read()}
             async with nekoSession.post(neko_endpoint, data=payload) as resp:
-                resp = await resp.json()
+                resp = await resp.text()
                 neko_link = f"https://nekobin.com/{resp['result']['key']}"
         logger.debug(neko_link)
         await m.edit_message_reply_markup(
