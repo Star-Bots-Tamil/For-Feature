@@ -21,10 +21,10 @@ async def __(c, m):
 
     with tempfile.TemporaryDirectory() as temp_dir:
         temp_file_name = os.path.join(temp_dir, "StarMoviesBot.log")
-        media_info = await m.message.download(temp_file_name)
+        log = await m.message.download(temp_file_name)
         neko_endpoint = "https://nekobin.com/api/documents"
         async with aiohttp.ClientSession() as nekoSession:
-            payload = {"content": open(media_info, "r").read()}
+            payload = {"content": open(log, "r").read()}
             async with nekoSession.post(neko_endpoint, data=payload) as resp:
                 resp = await resp.text()
                 neko_link = f"https://nekobin.com/{resp['result']['key']}"
