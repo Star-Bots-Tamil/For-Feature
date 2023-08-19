@@ -38,7 +38,8 @@ async def __(c, m):
                 final_url_raw = f"{NEKOBIN_URL}raw/{key}{file_ext}"
         logger.debug(neko_link)
         await m.edit_message_reply_markup(
-            InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neko_link)]]))
+            InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=neko_link)]])
+        )
     else:
         await m.edit_message_reply_markup(
             InlineKeyboardMarkup([[InlineKeyboardButton("Web URL", url=final_url_raw)]])
