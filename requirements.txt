@@ -1,4 +1,3 @@
-git+https://github.com/Joelkb/cinemagoer
 pyrogram>=2.0.30
 pymongo[srv]==3.12.3
 imdbpy==2022.7.9
