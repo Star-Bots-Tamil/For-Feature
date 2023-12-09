@@ -50,7 +50,6 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "Cluster0")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # sql Database information
-
 SQL_DATABASE_URL = environ.get("SQL_DATABASE_URL", "postgres://tufiatbi:uuel5uxW9dhBEfYz5WLHi2UclUzPyiSD@heffalump.db.elephantsql.com/tufiatbi")
 
 # Others
@@ -98,6 +97,25 @@ if SELF_DELETE == "True":
     SELF_DELETE = True
 AUTO_FFILTER = is_enabled((environ.get('AUTO_FFILTER', "True")), True)
 
+#Renamer Configs
+FLOOD = int(environ.get("FLOOD", "10"))
+RENAME_MODE = bool(environ.get("RENAME_MODE"))
+#Add user id of the user in this field those who you want to be Authentic user for file renaming features
+lazy_renamers = [int(lazrenamers) if id_pattern.search(lazrenamers) else lazrenamers for lazrenamers in environ.get('LAZY_RENAMERS', '').split()]
+LAZY_RENAMERS = (lazy_renamers + ADMINS) if lazy_renamers else []
+REQ_CHANNEL = int(environ.get('REQ_CHANNEL'))
+
+#ai
+OPENAI_API = environ.get("OPENAI_API","")
+AI = is_enabled((environ.get("AI","True")), False)
+AI_LOGS = int(environ.get("AI_LOGS","")) #GIVE YOUR NEW LOG CHANNEL ID TO STORE MESSAGES THAT THEY SEARCH IN BOT PM.... [ i have added this to keep an eye on the users message, to avoid misuse of LazyPrincess ]
+# Requested Content template variables ---
+ADMIN_USRNM = environ.get('ADMIN_USRNM','TG_Karthik') # WITHOUT @
+MAIN_CHANNEL_USRNM = environ.get('MAIN_CHANNEL_USRNM','Star_Bots_Tamil') # WITHOUT @
+DEV_CHANNEL_USRNM = environ.get('DEV_CHANNEL_USRNM','Star_Moviess_Tamil') # WITHOUT @
+YT_HANDLE = environ.get('LAZY_YT_HANDLE','StarBotsTamil')  # WITHOUT @ [  add only handle - don't add full url  ] 
+MOVIE_GROUP_USERNAME = environ.get('MOVIE_GROUP_USERNAME', "+qAxoGBvSyNmU1") #[ without @ ]
+
     # Download Tutorial Button #
 DOWNLOAD_TEXT_NAME = "⚡ How To Download ⚡"
 DOWNLOAD_TEXT_URL = "https://telegram.me/Star_Moviess_Bot?start=files_BAADBQAD3QwAAitd-Fb0taAQAAH02-QWBA"
@@ -131,6 +149,38 @@ JOIN_REQS_DB = environ.get("JOIN_REQS_DB", DATABASE_URI)
 LANGUAGES = ["tamil", "tam", "malayalam", "mal" ,"english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
 
 SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "season 6" , "season 7" , "season 8" , "season 9" , "season 10"]
+
+# Online Stream and Download
+PORT = int(environ.get('PORT', 8080))
+NO_PORT = bool(environ.get('NO_PORT', False))
+APP_NAME = None
+if 'DYNO' in environ:
+    ON_HEROKU = True
+    APP_NAME = environ.get('APP_NAME')
+else:
+    ON_HEROKU = False
+BIND_ADRESS = str(getenv('WEB_SERVER_BIND_ADDRESS', '0.0.0.0'))
+FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else APP_NAME+'.herokuapp.com'
+URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
+    "http://{}:{}/".format(FQDN, PORT)
+SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
+WORKERS = int(environ.get('WORKERS', '4'))
+SESSION_NAME = str(environ.get('SESSION_NAME', 'StarBot'))
+MULTI_CLIENT = False
+name = str(environ.get('name', 'StarMoviessBot'))
+PING_INTERVAL = int(environ.get("PING_INTERVAL", "1200"))  # 20 minutes
+if 'DYNO' in environ:
+    ON_HEROKU = True
+    APP_NAME = str(getenv('APP_NAME'))
+
+else:
+    ON_HEROKU = False
+HAS_SSL=bool(getenv('HAS_SSL',False))
+if HAS_SSL:
+    URL = "https://{}/".format(FQDN)
+else:
+    URL = "http://{}/".format(FQDN)
+REPO_OWNER = "TG_Karthik"
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are Enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")
