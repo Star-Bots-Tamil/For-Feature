@@ -15,30 +15,26 @@ logging.basicConfig(
 )
 logging.getLogger("aiohttp").setLevel(logging.ERROR)
 logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
-
 from pyrogram import __version__
 from info import *
-
 from aiohttp import web
-from plugins import web_server
-
+from stream import web_server
 import asyncio
 from pyrogram import idle
-from stream.bot import LazyPrincessBot
-from util.keepalive import ping_server
+from stream.bot import StarMoviessBot
+from stream.utils.keepalive import ping_server
 from stream.bot.clients import initialize_clients
 
 ppath = "plugins/*.py"
 files = glob.glob(ppath)
-LazyPrincessBot.start()
+StarMoviessBot.start()
 loop = asyncio.get_event_loop()
-
 
 async def Star_start():
     print('\n')
-    print('Initalizing Lazy Bot')
-    bot_info = await LazyPrincessBot.get_me()
-    LazyPrincessBot.username = bot_info.username
+    print('Initalizing Star Movies Bot')
+    bot_info = await StarMoviessBot.get_me()
+    StarMoviessBot.username = bot_info.username
     await initialize_clients()
     for name in files:
         with open(name) as a:
