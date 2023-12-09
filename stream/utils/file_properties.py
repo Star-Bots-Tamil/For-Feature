@@ -3,8 +3,7 @@ from typing import Any, Optional
 from pyrogram.types import Message
 from pyrogram.file_id import FileId
 from pyrogram.raw.types.messages import Messages
-from server.exceptions import FIleNotFound
-
+from stream.server.exceptions import FIleNotFound
 
 async def parse_file_id(message: "Message") -> Optional[FileId]:
     media = get_media_from_message(message)
