@@ -18,7 +18,7 @@ logging.getLogger("aiohttp.web").setLevel(logging.ERROR)
 from pyrogram import __version__
 from info import *
 from aiohttp import web
-from stream.server import web_server
+from stream import web_server
 import asyncio
 from pyrogram import idle
 from stream.bot import StarMoviessBot
