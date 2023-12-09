@@ -81,8 +81,8 @@ MSG_ALRT = environ.get('MSG_ALRT', 'Wʜᴀᴛ Aʀᴇ Yᴏᴜ Lᴏᴏᴋɪɴɢ A�
     
       # URL Shortener #
 
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'droplink.co')
-SHORTLINK_API = environ.get('SHORTLINK_API', '1d85e33efc4969b36e0f6c0a017aaaefd8accccc')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'shareus.io')
+SHORTLINK_API = environ.get('SHORTLINK_API', 'IiXFmlsLukgMvDpc3t3FHbLal4u1')
 IS_SHORTLINK = is_enabled((environ.get('IS_SHORTLINK', 'False')), False)
 IS_VERIFY = is_enabled((environ.get('IS_VERIFY', 'True')), False)
 HOW_TO_VERIFY = environ.get('HOW_TO_VERIFY', "https://t.me/UK_Movies_Zone/211")
