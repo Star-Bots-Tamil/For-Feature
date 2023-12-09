@@ -1,7 +1,7 @@
 from pyrogram import Client, filters, enums
 from pyshorteners import Shortener
 from shortzy import Shortzy
-from info import info
+from info import *
 from database.utils import progress_for_pyrogram, convert, humanbytes
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
@@ -26,7 +26,7 @@ async def get_channel_shortlink(link):
 
 async def get_channel_shortlinkk(url):
     if True:
-        shortzy = Shortzy(URL_SHORTNER_WEBSITE_API, URL_SHORTENR_WEBSITE)
+        shortzy = Shortzy(SHORTLINK_API, SHORTLINK_URL)
         try:
             url = await shortzy.convert(url)
         except Exception as e:
@@ -56,8 +56,8 @@ async def channel_receive_handler(bot, broadcast):
             text=f"**⚡ Link Generated Successfully\nFile Name :- {fileName} \n\nFile Size :- {filesize}\n\nChannel Name :- {channel_name}\n\nChannel ID :-** `{channel_id}`",
             quote=True,
             disable_web_page_preview=True,
-            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("web Download", url=star_download),  # we download Link
-                                                InlineKeyboardButton('▶Stream online', url=star_stream)]])  # web stream Link
+            reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Download Link", url=star_download),  # we download Link
+                                                InlineKeyboardButton('Watch Online', url=star_stream)]])  # web stream Link
         )
         await bot.edit_message_reply_markup(
             chat_id=broadcast.chat.id,
