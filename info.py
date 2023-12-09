@@ -1,7 +1,6 @@
 import re
-from os import environ
+from os import environ, getenv
 from time import time
-from os import getenv
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
@@ -181,6 +180,10 @@ if HAS_SSL:
 else:
     URL = "http://{}/".format(FQDN)
 REPO_OWNER = "TG_Karthik"
+FILES_CHANNEL = int(
+    environ.get("FILES_CHANNEL", "-1001871766752")
+)
+BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001296894100")).split()))
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are Enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")
