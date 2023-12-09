@@ -13,10 +13,10 @@ def is_enabled(value, default):
         return default
 
 # Bot information
-SESSION = environ.get('SESSION', 'Media_search')
+SESSION = environ.get('SESSION', 'Star_Moviess')
 API_ID = int(environ.get('API_ID', '11973721'))
 API_HASH = environ.get('API_HASH', '5264bf4663e9159565603522f58d3c18')
-BOT_TOKEN = environ.get('BOT_TOKEN', "5865794282:AAFnT-n6Hzq7t74FmvyLpGPCXwQIymdRPHs")
+BOT_TOKEN = environ.get('BOT_TOKEN', "5865794282:AAEtJgoAOKcDR6nKRyA8Kr2-QiQpfely5vw")
 OWNER_ID = int(getenv("OWNER_ID", "1391556668"))
 
 # Bot settings
@@ -164,7 +164,7 @@ FQDN = str(getenv('FQDN', BIND_ADRESS)) if not ON_HEROKU or getenv('FQDN') else 
 URL = "https://{}/".format(FQDN) if ON_HEROKU or NO_PORT else \
     "http://{}:{}/".format(FQDN, PORT)
 SLEEP_THRESHOLD = int(environ.get('SLEEP_THRESHOLD', '60'))
-WORKERS = int(environ.get('WORKERS', '4'))
+WORKERS = int(environ.get('WORKERS', '7'))
 SESSION_NAME = str(environ.get('SESSION_NAME', 'StarBot'))
 MULTI_CLIENT = False
 name = str(environ.get('name', 'StarMoviessBot'))
