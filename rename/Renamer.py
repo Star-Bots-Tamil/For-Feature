@@ -9,7 +9,7 @@ from info import *
 
 @Client.on_message( filters.private & (filters.document | filters.audio | filters.video))
 async def rename_start(client, message):
-    if (LAZY_MODE==True):
+    if (LAZ_MODE==True):
         if message.from_user.id in ADMINS :
             file = getattr(message, message.media.value)
             filesize = humanize.naturalsize(file.file_size) 
