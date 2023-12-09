@@ -3,14 +3,13 @@ import asyncio
 import logging
 from info import *
 from typing import Dict, Union
-from lazybot import work_loads
+from stream.bot import work_loads
 from pyrogram import Client, utils, raw
-from .file_properties import get_file_ids
+from stream.utils.file_properties import get_file_ids
 from pyrogram.session import Session, Auth
 from pyrogram.errors import AuthBytesInvalid
-from server.exceptions import FIleNotFound
+from stream.server.exceptions import FIleNotFound
 from pyrogram.file_id import FileId, FileType, ThumbnailSource
-
 
 class ByteStreamer:
     def __init__(self, client: Client):
