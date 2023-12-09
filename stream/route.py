@@ -1,3 +1,4 @@
+import os
 import re
 import math
 import logging
@@ -14,13 +15,13 @@ from util.time_format import get_readable_time
 from util.render_template import render_page
 from info import *
 
-
+ROOT = os.path.dirname(__file__)
 routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
-async def root_route_handler(_):
-    return web.Response(text="Success is the journey of millions of failure and lots of hard work & smart logics. - @LazyDeveloperr -/-- Welcome to our #LazyFamily 🥰")
-
+async def root_route_handler(request):
+    content = open(os.path.join(ROOT, "../stream/template/index.html"), "r").read()
+    return web.Response(content_type="text/html", text=content)
 
 @routes.get(r"/watch/{path:\S+}", allow_head=True)
 async def stream_handler(request: web.Request):
