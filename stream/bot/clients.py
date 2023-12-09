@@ -3,7 +3,7 @@ import logging
 from info import *
 from pyrogram import Client
 from stream.utils.parser import TokenParser
-from stream.bot. import multi_clients, work_loads, LazyPrincessBot
+from stream.bot import multi_clients, work_loads, StarMoviessBot
 
 async def initialize_clients():
     multi_clients[0] = LazyPrincessBot
