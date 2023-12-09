@@ -7,9 +7,9 @@ from hachoir.parser import createParser
 from pyrogram.errors import FloodWait, UserNotParticipant
 import os 
 import humanize
-from util.human_readable import humanbytes
+from stream.utils.human_readable import humanbytes
 from urllib.parse import quote_plus
-from util.file_properties import get_name, get_hash, get_media_file_size
+from stream.utils.file_properties import get_name, get_hash, get_media_file_size
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
