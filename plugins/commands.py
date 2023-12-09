@@ -150,7 +150,7 @@ async def get_channel_shortlink(link):
 
 async def get_channel_shortlinkk(url):
     if True:
-        shortzy = Shortzy(URL_SHORTNER_WEBSITE_API, URL_SHORTENR_WEBSITE)
+        shortzy = Shortzy(SHORTLINK_API, SHORTLINK_URL)
         try:
             url = await shortzy.convert(url)
         except Exception as e:
