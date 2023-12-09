@@ -53,7 +53,7 @@ async def channel_receive_handler(bot, broadcast):
         star_download = f"{URL}download/{str(log_msg.id)}/{quote_plus(get_name(log_msg))}?hash={get_hash(log_msg)}"
         shortened_link = await get_channel_shortlinkk(star_stream)
         await log_msg.reply_text(
-            text=f"**Link Generated Successfully\nFile Name :- {fileName} \n\nFile Size :- {filesize}\n\nChannel Name :- `{channel_name}`\n\nChannel ID :-** `{channel_id}`",
+            text=f"**⚡ Link Generated Successfully\nFile Name :- {fileName} \n\nFile Size :- {filesize}\n\nChannel Name :- {channel_name}\n\nChannel ID :-** `{channel_id}`",
             quote=True,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("web Download", url=star_download),  # we download Link
