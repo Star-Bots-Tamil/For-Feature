@@ -47,11 +47,11 @@ async def Star_start():
             spec.loader.exec_module(load)
             sys.modules["plugins." + plugin_name] = load
             print("Imported => " + plugin_name)
-    if ON_HEROKU:
+    if WEBHOOK:
         asyncio.create_task(ping_server())
     app = web.AppRunner(await web_server())
     await app.setup()
-    bind_address = "0.0.0.0" #if ON_HEROKU else BIND_ADRESS
+    bind_address = "0.0.0.0"
     await web.TCPSite(app, bind_address, PORT).start()
     await idle()
 
