@@ -147,15 +147,15 @@ JOIN_REQS_DB = environ.get("JOIN_REQS_DB", DATABASE_URI)
 # Languages and Seasons
 
 LANGUAGES = ["tamil", "tam", "malayalam", "mal" ,"english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
-
 SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "season 6" , "season 7" , "season 8" , "season 9" , "season 10"]
 
 # Online Stream and Download
+WEBHOOK = bool(os.environ.get("WEBHOOK", True))
 PORT = int(environ.get('PORT', 8080))
 NO_PORT = bool(environ.get('NO_PORT', False))
 APP_NAME = None
 if 'DYNO' in environ:
-    ON_HEROKU = True
+    ON_HEROKU = False
     APP_NAME = environ.get('APP_NAME')
 else:
     ON_HEROKU = False
