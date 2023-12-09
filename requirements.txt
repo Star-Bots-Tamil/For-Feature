@@ -47,3 +47,4 @@ shortzy
 psutil
 pyromod
 colorama
+hachoir
