@@ -26,7 +26,7 @@ async def render_page(id, secure_hash, src=None):
     if tag in ["video", "audio"]:
         template_file = "stream/template/req.html"
     else:
-        template_file = "template/dl.html"
+        template_file = "stream/template/dl.html"
         async with aiohttp.ClientSession() as s:
             async with s.get(src) as u:
                 file_size = humanbytes(int(u.headers.get("Content-Length")))
