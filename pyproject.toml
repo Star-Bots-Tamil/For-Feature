@@ -1,23 +1,23 @@
 [project]
-name = "YourProjectName"
+name = "Star Movies Bot"
 version = "0.1.0"
-description = "Your project description"
+description = "Get Movies"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "Star Movies Botemz"
+name = "Star Movies Bot"
 version = "0.1.0"
-description = "Your project description"
+description = "Get Movies"
 authors = ["Your Name <your@email.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 # Add your project dependencies here
 # For example:
-# aiohttp = "^3.7.4"
+aiohttp = "^3.7.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
