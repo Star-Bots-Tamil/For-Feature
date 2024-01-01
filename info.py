@@ -27,6 +27,12 @@ MELCOW_VID = environ.get("MELCOW_VID", "https://telegra.ph/file/451f038b4e7c2ddd
 SPELL_IMG = environ.get("SPELL_IMG", "https://telegra.ph/file/51f73cc1fbb5a250afc46.jpg")
 NO_RESULTS_MSG = is_enabled((environ.get("NO_RESULTS_MSG", 'True')), False)
 BOT_START_TIME = time()
+SUPPORT_LINK = environ.get('SUPPORT_LINK', 'https://t.me/SL_Bots_Support')
+UPDATES_LINK = environ.get('UPDATES_LINK', 'https://t.me/SL_Bots_Updates')
+FILMS_LINK = environ.get('FILMS_LINK', 'https://t.me/SL_Films_World')
+TUTORIAL = environ.get("TUTORIAL", "https://t.me/SL_Bots_Updates")
+VERIFY_TUTORIAL = environ.get("VERIFY_TUTORIAL", "https://t.me/SL_Bots_Updates")
+LANGUAGES = [language.lower() for language in environ.get('LANGUAGES', 'tamil english hindi telugu kannada malayalam').split()]
 
 # Admins, Channels & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '1391556668 5162208212').split()]
