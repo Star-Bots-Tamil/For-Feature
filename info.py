@@ -84,6 +84,7 @@ GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+va6nunx_ddQ4ZWNl')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Star_Moviess_Tamil')
 MSG_ALRT = environ.get('MSG_ALRT', 'Wʜᴀᴛ Aʀᴇ Yᴏᴜ Lᴏᴏᴋɪɴɢ Aᴛ ?')
 AUTO_FILTER = is_enabled('AUTO_FILTER', True)
+AUTO_DELETE = is_enabled('AUTO_DELETE', False)
 
 ## Extra Features ##
     
