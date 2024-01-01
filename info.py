@@ -48,6 +48,7 @@ reqst_channel = environ.get('REQST_CHANNEL_ID', '-1001831802226')
 REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_channel) else None
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 BOT_CHANNEL_ID = int(getenv("BOT_CHANNEL_ID", "-1001822021062"))
+SPELL_CHECK = is_enabled("SPELL_CHECK", True)
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "mongodb+srv://KarthikMovies:KarthikUK007@cluster0.4l5byki.mongodb.net/?retryWrites=true&w=majority")
