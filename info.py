@@ -82,6 +82,7 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+va6nunx_ddQ4ZWNl')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/Star_Moviess_Tamil')
 MSG_ALRT = environ.get('MSG_ALRT', 'Wʜᴀᴛ Aʀᴇ Yᴏᴜ Lᴏᴏᴋɪɴɢ Aᴛ ?')
+AUTO_FILTER = is_enabled('AUTO_FILTER', True)
 
 ## Extra Features ##
     
@@ -133,7 +134,8 @@ GROUP = (environ.get('GROUP', 'https://t.me/+va6nunx_ddQ4ZWNl'))
 RULES = (environ.get('RULES', 'http://t.me/MissRose_bot?start=rules_-1001650088903'))
 SHARE = (environ.get('SHARE', 'https://t.me/share/url?url=I%27m%20an%20UK%20Movies%20Official%20Auto%20Filter%20Bot%20%28Movie%20Search%20Bot%29.%20Just%20Search%20Then%20You%20Can%20Get%20Files..%E2%9D%A4%EF%B8%8F%0A%0A%F0%9F%93%A2%20Join%20Our%20Update%20Channel%20%3A-%0A%40UK_Movies_Zone_Updates%0A%0A%F0%9F%94%A5%20Powered%20By%20%3A-%0A%40UK_Studios_Official%0A%40HMTD_Links%0A%20%20%0A%F0%9F%91%87%20Join%20%3A-%0A%20https%3A//t.me/UK_Movies_Zone'))
 ADMIN = int(getenv('ADMIN', '1391556668'))
-
+DELETE_TIME = int(environ.get('DELETE_TIME', 3600)) # Add time in seconds
+CACHE_TIME = int(environ.get('CACHE_TIME', 300))
    # Custom Caption Under Button #
 CAPTION_BUTTON = "🔥 Join Our Channel 🔥"
 CAPTION_BUTTON_URL = "https://t.me/Star_Moviess_Tamil"
@@ -148,10 +150,15 @@ AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_chan
 REQ_CHANNEL = environ.get("REQ_CHANNEL", "-1001793064603")
 REQ_CHANNEL = int(REQ_CHANNEL) if REQ_CHANNEL and id_pattern.search(REQ_CHANNEL) else False
 JOIN_REQS_DB = environ.get("JOIN_REQS_DB", DATABASE_URI)
-
+SUPPORT_GROUP = environ.get('SUPPORT_GROUP', '')
+if len(SUPPORT_GROUP) == 0:
+    print('Error - SUPPORT_GROUP is missing, exiting now')
+    exit()
+else:
+    SUPPORT_GROUP = int(SUPPORT_GROUP)
+VERIFY_EXPIRE = int(environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
 # Languages and Seasons
 
-LANGUAGES = ["tamil", "tam", "malayalam", "mal" ,"english", "eng", "hindi", "hin", "telugu", "tel", "kannada", "kan"]
 SEASONS = ["season 1" , "season 2" , "season 3" , "season 4", "season 5" , "season 6" , "season 7" , "season 8" , "season 9" , "season 10"]
 
 # Online Stream and Download
@@ -189,6 +196,7 @@ REPO_OWNER = "TG_Karthik"
 FILES_CHANNEL = int(
     environ.get("FILES_CHANNEL", "-1001871766752")
 )
+BIN_CHANNEL = int(environ.get("BIN_CHANNEL", LOG_CHANNEL))
 BANNED_CHANNELS = list(set(int(x) for x in str(getenv("BANNED_CHANNELS", "-1001296894100")).split()))
 
 LOG_STR = "Current Cusomized Configurations are:-\n"
